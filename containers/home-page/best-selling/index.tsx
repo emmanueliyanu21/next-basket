@@ -12,6 +12,7 @@ const buttonData = {
 }
 
 const BestSelling: React.FC<ProductCardProps & HeaderProps> = ({ dataHeader, data }) => {
+    
     return (
         <Container>
             <HeaderContent data={dataHeader} />
