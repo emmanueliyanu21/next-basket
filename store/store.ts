@@ -1,13 +1,14 @@
-// redux/store.ts
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import counterReducer from '../redux/slice/counterSlice';
+import productReducer from '../redux/slice/productSlice';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  // Add other slices as needed
+  product: productReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
 
 const store = configureStore({
   reducer: rootReducer,

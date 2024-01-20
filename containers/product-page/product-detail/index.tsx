@@ -7,29 +7,19 @@ import ImageDetails from './image-details';
 import ProductImage from './product-image';
 import { ProductDetailsProps } from '@/types/Product';
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
-
 const ProductDetail = ({ data }: ProductDetailsProps) => {
+    console.log(data, 'kkk')
     return (
         <Container className='my-28'>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={6} className='text-left'>
-                    <Item>
-                        <ProductImage data={data.mainImage} />
-                    </Item>
+                    <ProductImage data={data} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <ImageDetails data={ImageData} />
+                    <ImageDetails data={data} />
                 </Grid>
             </Grid>
         </Container>
-
     )
 }
 

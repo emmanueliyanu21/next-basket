@@ -8,9 +8,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
-import { ProductImageDetailsprops } from '@/types/Product';
+import { ProductDetailsProps } from '@/types/Product';
+// import { ProductImageDetailsprops } from '@/types/Product';
 
-const ImageDetails = ({data}: ProductImageDetailsprops) => {
+const ImageDetails = ({data}: ProductDetailsProps) => {
     const buttonInfo = {
         value: 'Select Options',
         variant: 'contained'
@@ -18,7 +19,7 @@ const ImageDetails = ({data}: ProductImageDetailsprops) => {
     return (
         <Box display="block" className="pt-2 pl-8">
             <Typography className="py-4 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
-                {data.name}
+                {data.brand}
             </Typography>
             <Box className="py-2" justifyContent="left" display="flex" alignItems="center" gap={2}>
                 <StarRating value={data.rating} />

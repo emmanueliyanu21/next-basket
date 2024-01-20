@@ -8,6 +8,7 @@ import {formatPrice} from '../../libs/util'
 import { ProductCardProps } from '../../types/Product'
 
 const ProductCard = ({ data }: ProductCardProps) => {
+    console.log(data, 'pp')
     return (
         <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(183px, 1fr))" gap={2}>
             {data.map((item, index) => (
