@@ -1,7 +1,7 @@
 // pages/_app.tsx
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store';
+import  store  from '../../store/store';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
