@@ -5,9 +5,13 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';
-import { ProductDetailsProps } from '@/types/Product';
+import { ProductDetailsProps, SingleProduct } from '@/types/Product';
 
-const ImageGallery = ({ data }: ProductDetailsProps) => {
+type ProductDetailProps = {
+    data: SingleProduct;
+  }
+
+const ImageGallery: React.FC<ProductDetailProps> = ({ data }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handlePrevImage = () => {
@@ -20,26 +24,26 @@ const ImageGallery = ({ data }: ProductDetailsProps) => {
 
     return (
         <Box>
-            <Box className="relative shadow-sm p-4 mb-4 bg-white rounded-md border border-gray-300">
+            <Box width={500} className="relative shadow-sm p-4 mb-4 bg-white rounded-md border border-gray-300">
                 {/* <React.Fragment>
                    
                         <Skeleton variant="rectangular" width={500} height={500} />
                         </React.Fragment> */}
                 <Image
-                    src={data.images[currentImageIndex]}
+                    src={data?.images[currentImageIndex]}
                     alt="image"
                     width="0" height="0"
                     sizes="100vw"
                     style={{
-                        width: '500px', height: '500px', objectFit: 'cover',
-                    }} />
-
+                        width: '500px', height: '450px', objectFit: 'cover',
+                    }}
+                    priority={true} />
                 <Box
                     sx={{
                         position: 'absolute',
                         bottom: '100px',
                         display: 'flex',
-                        width: '520px',
+                        width: '480px',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                     }}
@@ -64,6 +68,7 @@ const ImageGallery = ({ data }: ProductDetailsProps) => {
                         style={{
                             width: '100px', height: '100px', cursor: 'pointer', objectFit: 'cover',
                         }}
+                        priority={true}
                         onClick={() => {
                             setCurrentImageIndex(index);
                         }}

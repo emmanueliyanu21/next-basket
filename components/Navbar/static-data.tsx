@@ -6,12 +6,12 @@ import Bandage from '../../public/images/Bandage.png'
 
 const data = {
     menuItems: [
-        'Home',
-        'Shop',
-        'About',
-        'Blog',
-        'Contact',
-        'Pages',
+        {url: '/', name: 'Home'},
+        {url: 'shop', name: 'Shop'},
+        {url: 'about', name: 'About'},
+        {url: 'blog', name: 'Blog'},
+        {url: 'contact', name: 'Contact'},
+        {url: 'pages', name: 'Pages'},
     ],
     loginRegisterMenuItem: 'Login / Register',
     icons: [

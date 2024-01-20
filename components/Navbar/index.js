@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
+import Link from 'next/link';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,8 +12,11 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { data } from './static-data'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MobileNavbar from './MobileNavbar';
+import { openCartModal } from '../../redux/action/cart.action';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
+    const dispatch = useDispatch()
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
     const handleClose = () => { }
@@ -21,6 +25,7 @@ const Navbar = () => {
     }
 
     const handleCart = () => {
+        dispatch(openCartModal());
     }
 
     const handleMobile = () => {
@@ -37,9 +42,9 @@ const Navbar = () => {
             handleWishList,
             handleMobile,
         ];
-    
+
         const action = actions[index];
-    
+
         if (action) {
             action();
         }
@@ -49,17 +54,21 @@ const Navbar = () => {
         <Container maxWidth="xl">
             <Box className="flex justify-between py-2">
                 <Box className="flex items-center gap-10 p-2">
-                    <Image src={data.logo} alt="Bandage" width="0"
-    height="0"
-    sizes="100vw"
-    style={{ width: '120px', height: 'auto' }}  />
+                    <Link href="/" passHref>
+                        <Image src={data.logo} alt="Bandage" width="0"
+                            height="0"
+                            sizes="100vw"
+                            style={{ width: '120px', height: 'auto' }} />
+                    </Link>
                     <Box className="hidden md:flex items-center">
                         {data.menuItems.map((item, index) => (
                             <MenuItem key={index} onClick={handleClose}>
-                                <Typography className="text-grey font-Montserrat font-bold leading-6 tracking-wide" variant="body2">
-                                    {item}
-                                    {item === 'Shop' ? <ExpandMoreIcon /> : ''}
-                                </Typography>
+                                <Link href={`/${item.url}`} passHref>
+                                    <Typography className="text-grey font-Montserrat font-bold leading-6 tracking-wide" variant="body2">
+                                        {item.name}
+                                        {item.name === 'Shop' ? <ExpandMoreIcon /> : ''}
+                                    </Typography>
+                                </Link>
                             </MenuItem>
                         ))}
                     </Box>

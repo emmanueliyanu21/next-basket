@@ -1,6 +1,6 @@
 import HomePage from '@/containers/home-page';
 
-export default function App() {
+export default function Home() {
   return (
       <HomePage />
   )
