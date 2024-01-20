@@ -4,12 +4,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root {
-  
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bk-wrapper {
-  background: url('./assets/images/bg-action.png');
+  background: url('../public/images/bg-action.png');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
