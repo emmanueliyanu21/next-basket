@@ -1,4 +1,4 @@
-import ProductPage from "@/container/product-page"
+import ProductPage from "@/containers/product-page"
 
 const Product = () => {
   return (

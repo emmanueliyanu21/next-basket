@@ -5,7 +5,7 @@ import ThemeClient from './rootLayout'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { footer } from '../container/static-data';
+import { footer } from '../containers/static-data';
 
 export const metadata: Metadata = {
   title: 'Next Basket E-commerce',
