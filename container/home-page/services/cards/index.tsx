@@ -15,7 +15,7 @@ const Cards = ({data}: ServiceItemProps ) => {
     return (
         <Box flexWrap="wrap" display="flex" justifyContent="center">
             {data.map((item, index) => (
-                <Box key={index} width={400} mx="auto" textAlign="center">
+                <Box key={index} width={300} mx="auto" textAlign="center">
                     <Box className="mb-8" display="flex" justifyContent="center">
                         <Image src={item.imageUrl} width={80} height={80} alt={item.name} />
                     </Box>
