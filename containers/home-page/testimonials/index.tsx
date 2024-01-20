@@ -7,20 +7,7 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import StarRating from '@/components/Shared/Rating';
-
-type Testimonialprops = {
-    data: {
-        gallery: { image: string }[],
-        testimonial: {
-            header: string,
-            rating: number,
-            text: string,
-            name: string,
-            title: string,
-            image: string
-        }
-    }
-}
+import { Testimonialprops } from '@/types/Home';
 
 const Testimonials = ({ data }: Testimonialprops) => {
 

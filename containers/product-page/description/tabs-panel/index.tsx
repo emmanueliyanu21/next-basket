@@ -5,23 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Description from '../index';
-
-export type DescriptionProps = {
-    data: {
-        header: string[],
-        content: {
-            header: string,
-            text: string[],
-            image: string
-        }
-    }
-}
-
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
+import { TabPanelProps, DescriptionProps } from '@/types/Product';
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;

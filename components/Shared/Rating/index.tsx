@@ -1,10 +1,7 @@
 import React from 'react';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
-
-type RatingProps = {
-    value: number
-}
+import { RatingProps } from '@/types/Rating';
 
 const StarRating = ( {value}: RatingProps ) => {
   return (

@@ -3,15 +3,8 @@ import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
+import { NavbarProps } from '@/types/Navbar';
 
-type NavbarProps = {
-    data: {
-        menuItems: string[];
-        loginRegisterMenuItem: string;
-        icons: ReactNode[];
-        logo: ReactNode;
-    };
-};
 export default function MobileNavbar({data}: NavbarProps) {
   return (
     <Paper className='shadow-none' sx={{ width: 500, maxWidth: '100%' }}>

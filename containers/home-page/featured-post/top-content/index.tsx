@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography } from '@mui/material';
-import { FeaturedContentProps } from '../index';
 import Box from '@mui/material/Box';
+import { FeaturedContentProps } from '@/types/Home';
 
 const TopContent = ({data}: FeaturedContentProps) => {
   return (

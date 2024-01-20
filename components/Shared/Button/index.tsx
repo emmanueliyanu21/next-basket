@@ -1,15 +1,9 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { ButtonProps } from '@/types/Button';
 
-type Buttonprops = {
-    data: {
-        value: string,
-        variant: string
-    }
-}
-
-const Index = ({ data }: Buttonprops) => {
+const Index = ({ data }: ButtonProps) => {
     return (
         <Box display="flex" justifyContent="center">
             <Button

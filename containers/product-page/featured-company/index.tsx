@@ -2,12 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-
-export type FeaturedCompanyProps = {
-    data: {
-        image: string
-    }[]
-}
+import { FeaturedCompanyProps } from '@/types/Product';
 
 const FeaturedCompany = ({ data }: FeaturedCompanyProps) => {
     return (

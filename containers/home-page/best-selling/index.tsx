@@ -4,26 +4,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import ProductCard from '@/components/ProductCard';
 import Button from '@/components/Shared/Button'
-
-export type HeaderProps = {
-    dataHeader: {
-        header: string,
-        caption: string,
-        detail: string
-    }
-}
-
-export type ProductCardProps = {
-    data: {
-        id: number,
-        imageUrl: string;
-        title: string;
-        category: string;
-        discountPercentage: number,
-        price: number,
-        images: string[]
-    }[],
-}
+import { ProductCardProps, HeaderProps } from '../../../types/Home'
 
 const buttonData = {
     value: 'LOAD MORE PRODUCTS',

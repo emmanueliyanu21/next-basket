@@ -5,17 +5,7 @@ import Link from 'next/link';
 import { Typography } from '@mui/material';
 import {formatPrice} from '../../libs/util'
 
-export type ProductCardProps = {
-    data: {
-        id: number,
-        imageUrl: string;
-        title: string;
-        category: string;
-        discountPercentage: number,
-        price: number,
-        images: string[]
-    }[],
-}
+import { ProductCardProps } from '../../types/Product'
 
 const ProductCard = ({ data }: ProductCardProps) => {
     return (

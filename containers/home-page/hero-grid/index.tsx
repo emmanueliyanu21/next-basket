@@ -7,20 +7,10 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import { Image1, Image2, Image3, Image4 } from './static-data'
-import { Typography, TypographyProps } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import  {data}  from './static-data'
-
-interface Item {
-  itemCount?: number;
-  category?: string; 
-  readMore?: string;
-  variant?: TypographyProps['variant'];
-}
-
-interface ItemContentProps extends Item {
-  variant?: TypographyProps['variant'];
-}
+import { ItemContentProps } from '@/types/Home';
 
 const ItemContent: React.FC<ItemContentProps> = ({ itemCount, category, readMore, variant = 'h5' }) => (
   <Box className="absolute top-0 p-5">

@@ -1,15 +1,9 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
+import { HeaderContentProps } from '@/types/Home';
 
-export interface HeaderProps {
-  data: {
-    header: string
-    caption: string
-    detail: string
-  }
-}
-const HeaderContent = ({data}: HeaderProps) => {
+const HeaderContent = ({data}: HeaderContentProps) => {
   return (
     <Box textAlign="center" className="font-montserrat py-8">
       <Typography className="text-center font-montserrat  text-grey font-normal leading-7 pb-2 tracking-wider" variant='h6' >{data.header}</Typography>

@@ -2,25 +2,7 @@ import React from 'react'
 import TopContent from './top-content'
 import FeaturedCards from './featured-card'
 import Container from '@mui/material/Container';
-
-export type FeaturedCardProps = {
-    cards: {
-        headers: string[],
-        title: string,
-        image: string,
-        text: string,
-        date: string,
-        comment: string,
-        more: string
-    }[]
-}
-
-export type FeaturedContentProps = {
-    data: {
-        title: string,
-        caption: string
-    }
-}
+import { FeaturedCardProps, FeaturedContentProps } from '@/types/Home';
 
 const FeaturedPost: React.FC<FeaturedContentProps & FeaturedCardProps> = ({ data, cards }) => {
     return (

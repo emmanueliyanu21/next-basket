@@ -1,12 +1,9 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import Image from 'next/image';
+import { ImageProp } from '@/types/Product';
 // import example1 from '../../../../../public/images/example1.jpeg'
 // import example2 from '../../../../../public/images/example2.jpeg'
-
-type ImageProp = {
-    data: string
-}
 
 const ProductImage = ({ data }: ImageProp) => {
     const images = [ 'example1', 'example2']

@@ -3,22 +3,7 @@ import HeaderContent from '../header-content'
 import Container from '@mui/material/Container';
 import Cards from './cards'
 import Box from '@mui/material/Box';
-
-export type ServiceItemProps = {
-    data: {
-        imageUrl: string;
-        name: string;
-        description: string;
-    }[],
-};
-
-export type HeaderProps = {
-    dataHeader: {
-        header: string,
-        caption: string,
-        detail: string
-    }
-}
+import { HeaderProps, ServiceItemProps } from '@/types/Home';
 
 const Services: React.FC<ServiceItemProps & HeaderProps> =  ({ data, dataHeader}) => {
     return (

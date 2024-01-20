@@ -4,27 +4,14 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { formatPrice } from '@/libs/util';
 import Button from '@/components/Shared/Button'
-
-type ActionCall = {
-    action: {
-        button: string,
-        text: string
-    },
-}
-
-export type FeaturedContentProps = {
-    data: {
-        title: string,
-        caption: string
-    }
-}
+import { FeaturedContentProps, ActionCallProps } from '../../../types/Home'
 
 const button = {
     value: 'ADD YOUR CALL TO ACTION',
     variant: 'contained'
 }
 
-const ActionCall: React.FC<FeaturedContentProps & ActionCall> = ({ data, action }) => {
+const ActionCall: React.FC<FeaturedContentProps & ActionCallProps> = ({ data, action }) => {
     return (
         <Box className="bk-wrapper py-36 bg-cover bg-no-repeat bg-center" >
             <Box display="flex" textAlign="center" justifyContent="center" >

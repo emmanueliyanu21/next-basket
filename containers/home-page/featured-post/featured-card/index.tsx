@@ -1,11 +1,11 @@
 import React from 'react'
 import Image from 'next/image';
 import Box from '@mui/material/Box';
-import { FeaturedCardProps } from '../index';
 import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { FeaturedCardProps } from '@/types/Home';
 
 const FeaturedCards = ({ cards }: FeaturedCardProps) => {
     return (

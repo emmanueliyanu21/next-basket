@@ -9,36 +9,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-
-type ListData = {
-    name: string;
-    list?: string[];
-};
-
-type GetInTouch = {
-    name: string,
-    text?: string,
-    action?: string,
-    caption?: string
-};
-
-type FooterHeader = {
-    image: string,
-    icons: {
-        name: string,
-        icon: ReactNode
-    }[]
-}
-
-type Data = {
-    companyInfo: ListData;
-    legal: ListData;
-    feature: ListData;
-    reserved: string;
-    resources: ListData
-    header: FooterHeader,
-    getInTouch: GetInTouch
-};
+import { Data, GetInTouch, ListData } from '@/types/FooterNav';
 
 const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action, caption }) => (
     <Box className="my-16">
@@ -91,6 +62,5 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
         </Box>
     </Box>
 );
-
 
 export default Footer

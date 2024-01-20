@@ -8,15 +8,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
+import { ProductImageDetailsprops } from '@/types/Product';
 
-
-type ProductImageDetailsprops = {
-    data: {
-        name: string,
-        rating: number,
-        price: number
-    }
-}
 const ImageDetails = ({data}: ProductImageDetailsprops) => {
     const buttonInfo = {
         value: 'Select Options',

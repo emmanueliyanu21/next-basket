@@ -5,19 +5,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import ImageDetails from './image-details';
 import ProductImage from './product-image';
-
-const ImageData = {
-    name: 'Floating Phone',
-    rating: 4,
-    price: 11393
-}
-
-export type ProductDetailsProps = {
-    data: {
-        mainImage: string,
-        otherImage: string[]
-    }
-}
+import { ProductDetailsProps } from '@/types/Product';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
