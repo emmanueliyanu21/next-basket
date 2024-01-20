@@ -4,13 +4,19 @@ import Image from 'next/image';
 import { ProductDetailsProps } from '@/types/Product';
 
 const ProductImage = ({ data }: ProductDetailsProps) => {
-    const images = [ 'example1', 'example2']
     return (
         <Box>
-            <Image src={data.thumbnail} alt="image" width={600} height={600} />
+            <Image src={data.thumbnail} alt="image" width="0" height="0"
+                sizes="100vw"
+                style={{
+                    width: '500px', height: '500px', objectFit: 'cover',
+                }} />
             <Box display="flex" justifyContent="flex-start" gap={2} className="mt-2">
-                { data.images.map((item, index) => (
-                    <Image key={index} src={item} alt="image" width={100} height={100} />
+                {data.images.map((item, index) => (
+                    <Image key={index} src={item} alt="image" width="0" height="0" sizes="100vw"
+                        style={{
+                            width: '100px', height: 'auto', objectFit: 'cover',
+                        }} />
                 ))}
             </Box>
         </Box>

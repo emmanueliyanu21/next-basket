@@ -16,6 +16,8 @@ const ImageDetails = ({data}: ProductDetailsProps) => {
         value: 'Select Options',
         variant: 'contained'
     }
+    // this is static because the api has no color pallete
+    const colors = ['#23A6F0', '#2DC071', '#E77C40', '#252B42'];
     return (
         <Box display="block" className="pt-2 pl-8">
             <Typography className="py-4 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
@@ -38,7 +40,7 @@ const ImageDetails = ({data}: ProductDetailsProps) => {
             </Box>
 
             <Box className="pb-14 pt-4 mt-36 border-t-2 border-gray-100">
-                <ColorPalette />
+                <ColorPalette colors={colors} />
             </Box>
             <Box display="flex" gap={2}  justifyContent="start" alignContent="center">
                 <Button data={buttonInfo} />

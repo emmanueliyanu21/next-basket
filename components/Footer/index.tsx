@@ -37,7 +37,11 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
         <Box className=" bg-gray-100">
             <Container >
                 <Box className="py-12 border-b border-solid border-gray-300" display="flex" justifyContent="space-between">
-                    <Image src={data.header.image} alt="Bandage" width={100} height={100} className="mr-10" />
+                    <Image src={data.header.image} alt="Bandage"
+                        width="0"
+                        height="0"
+                        sizes="100vw"
+                        style={{ width: '100px', height: 'auto' }} className="mr-10" />
                     <Box display="flex" gap={2}>
                         {data.header.icons.map((icon, index) => (
                             <React.Fragment key={index}>{icon.icon}</React.Fragment>

@@ -18,11 +18,9 @@ const Navbar = () => {
     const handleClose = () => { }
 
     const handleSearch = () => {
-        console.log('search was clicked')
     }
 
     const handleCart = () => {
-        console.log('cart was clicked')
     }
 
     const handleMobile = () => {
@@ -30,11 +28,9 @@ const Navbar = () => {
     }
 
     const handleWishList = () => {
-        console.log('wishList was clicked')
     }
 
     const handleIconClick = (index) => {
-        // order of items is important
         const actions = [
             handleSearch,
             handleCart,
@@ -53,7 +49,10 @@ const Navbar = () => {
         <Container maxWidth="xl">
             <Box className="flex justify-between py-2">
                 <Box className="flex items-center gap-10 p-2">
-                    <Image src={data.logo} alt="Bandage" width={120} height={120} className="mr-10" />
+                    <Image src={data.logo} alt="Bandage" width="0"
+    height="0"
+    sizes="100vw"
+    style={{ width: '120px', height: 'auto' }}  />
                     <Box className="hidden md:flex items-center">
                         {data.menuItems.map((item, index) => (
                             <MenuItem key={index} onClick={handleClose}>

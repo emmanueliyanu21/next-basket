@@ -12,7 +12,12 @@ const FeaturedCards = ({ cards }: FeaturedCardProps) => {
         <Box flexWrap="wrap" display="flex" justifyContent="center" gap={3}>
             {cards.map((product, index) => (
                 <Box maxWidth={348} className="bg-white shadow-md pb-8" key={index} >
-                    <Image src={product.image} alt={product.title} width={348} height={300} />
+                    <Image src={product.image} alt={product.title} width="0"
+                  height="0"
+                  sizes="100vw"
+                  style={{
+                    width: '348px', height: 'auto',
+                  }} />
                     <Box className="px-6 py-2">
                         <Box className="text-grey my-4" display="flex" gap={3}>
                             {product.headers.map((tag, index) => (

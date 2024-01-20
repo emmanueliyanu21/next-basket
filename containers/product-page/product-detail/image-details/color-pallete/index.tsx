@@ -1,31 +1,28 @@
 import React from 'react';
-import Radio from '@mui/material/Radio';
+import { styled } from '@mui/system';
+import { ColorPaletteProps } from '@/types/Color';
 import Box from '@mui/material/Box';
 
-export default function ColorPalette() {
-  const [selectedValue, setSelectedValue] = React.useState('a');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
-  };
+interface CircularElementProps {
+  bgColor?: string;
+}
 
-  const controlProps = (item: string) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
-    name: 'size-radio-button-demo',
-    inputProps: { 'aria-label': item },
-  });
+// Styled component for a circular element
+const CircularElement = styled('div')<CircularElementProps>(({ bgColor }) => ({
+  width: 30,
+  height: 30,
+  borderRadius: '50%',
+  background: bgColor || 'blue',  // Use the dynamic background color or default to 'blue'
+}));
 
+const ColorPalette = ({colors}: ColorPaletteProps ) => {
   return (
-    <Box>
-      <Radio
-        {...controlProps('c')}
-        sx={{
-          '& .MuiSvgIcon-root': {
-            fontSize: 36,
-          },
-        }}
-      />
+    <Box gap={2} className="flex ">
+      {colors.map((color, index) => (
+      <CircularElement key={index} bgColor={color} />
+      ))}
     </Box>
   );
-}
+};
+
+export default ColorPalette;

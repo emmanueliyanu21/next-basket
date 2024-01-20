@@ -3,12 +3,11 @@ import Box from '@mui/material/Box';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Typography } from '@mui/material';
-import {formatPrice} from '../../libs/util'
+import { formatPrice } from '../../libs/util'
 
 import { ProductCardProps } from '../../types/Product'
 
 const ProductCard = ({ data }: ProductCardProps) => {
-    console.log(data, 'pp')
     return (
         <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(183px, 1fr))" gap={2}>
             {data.map((item, index) => (
@@ -18,9 +17,11 @@ const ProductCard = ({ data }: ProductCardProps) => {
                             <Image
                                 src={item.images[0]}
                                 alt={item.title}
-                                width={183}
-                                height={238}
+                                width="0"
+                                height="0"
+                                sizes="100vw"
                                 style={{
+                                    width: '100%', height: 'auto',
                                     minWidth: '183px',
                                     maxWidth: '183px',
                                     minHeight: '238px',
