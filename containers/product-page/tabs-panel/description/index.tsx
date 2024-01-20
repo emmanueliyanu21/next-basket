@@ -1,7 +1,7 @@
+"use client"
+
 import React from 'react'
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import { Typography } from '@mui/material';

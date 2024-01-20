@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
 import { Typography } from '@mui/material';
 import { formatPrice } from '@/libs/util';
 import StarRating from '@/components/Shared/Rating';
@@ -8,10 +9,24 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
-import { ProductDetailsProps } from '@/types/Product';
-// import { ProductImageDetailsprops } from '@/types/Product';
+import { ProductDetailsProps, SingleProduct } from '@/types/Product';
 
-const ImageDetails = ({data}: ProductDetailsProps) => {
+import { addToCart } from '../../../../redux/action/cart.action';
+import Snackbar from '@/components/Snackbar';
+
+type ProductDetailProps = {
+    data: SingleProduct;
+  }
+const ImageDetails: React.FC<ProductDetailProps> = ({ data }) => {
+    const [isSnackbarOpen, setSnackbarOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(data));
+        setSnackbarOpen(true);
+    };
+
     const buttonInfo = {
         value: 'Select Options',
         variant: 'contained'
@@ -19,7 +34,10 @@ const ImageDetails = ({data}: ProductDetailsProps) => {
     // this is static because the api has no color pallete
     const colors = ['#23A6F0', '#2DC071', '#E77C40', '#252B42'];
     return (
+
         <Box display="block" className="pt-2 pl-8">
+
+            <Snackbar isSnackbar={isSnackbarOpen} value={"Items added to cart"} />
             <Typography className="py-4 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
                 {data.brand}
             </Typography>
@@ -42,11 +60,11 @@ const ImageDetails = ({data}: ProductDetailsProps) => {
             <Box className="pb-14 pt-4 mt-36 border-t-2 border-gray-100">
                 <ColorPalette colors={colors} />
             </Box>
-            <Box display="flex" gap={2}  justifyContent="start" alignContent="center">
+            <Box display="flex" gap={2} justifyContent="start" alignContent="center">
                 <Button data={buttonInfo} />
-                <Box className="pt-1" display="flex" gap={2}  justifyContent="start" alignContent="center">
+                <Box className="pt-1" display="flex" gap={2} justifyContent="start" alignContent="center">
                     <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><FavoriteIcon /></Box>
-                    <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
+                    <Box onClick={handleAddToCart} className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
                     <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><VisibilityIcon /></Box>
                 </Box>
             </Box>
