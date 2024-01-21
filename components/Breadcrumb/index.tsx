@@ -1,20 +1,24 @@
 import React from 'react';
-import { Breadcrumbs, Link, Typography } from '@mui/material';
+import { Breadcrumbs, Typography } from '@mui/material';
+import Link from 'next/link';
 import HomeIcon from '@mui/icons-material/Home';
-// import { BreadCrumbProps } from '@/types/BreadCrumbProps';
+import { BreadCrumbProps } from '@/types/BreadCrumbProps';
+import { ChevronRight } from '@mui/icons-material';
 
-const items = ['Home', 'Shoes']
-// { items }:BreadCrumbProps
-const Breadcrumb = () => {
+// const value = ['Home', 'Shoes']
+// 
+const Breadcrumb = ({ breadcrumbs }: BreadCrumbProps) => {
   return (
-    <Breadcrumbs aria-label="breadcrumb" separator="/">
-      <Link href="/">
-        <HomeIcon />
-      </Link>
-      {items.map((item, index) => (
-        <Typography key={index} color="textPrimary">
-          {item}
+    <Breadcrumbs className='ml-4' aria-label="breadcrumb" separator={<ChevronRight style={{color: "#BDBDBD", fontSize: "35px"}}/>}>
+      {breadcrumbs.map(({ path, title }, index) => (
+       <div className="capitalize font-montserrat font-semibold">
+         {path ? <Link href={path}><Typography className="text-black" key={index} color="textPrimary">
+          {title}
+        </Typography></Link> : <Typography className='text-lightGrey' key={index} color="textPrimary">
+          {title}
         </Typography>
+}
+       </div>
       ))}
     </Breadcrumbs>
   );

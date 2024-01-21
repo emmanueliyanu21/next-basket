@@ -9,11 +9,6 @@ import { RootState } from '@/store/store';
 import { fetchProducts } from '@/services/product/apiService';
 import { PaginationProps } from '@/types/Product';
 
-const buttonData = {
-    value: 'LOAD MORE PRODUCTS',
-    variant: 'outlined'
-}
-
 const BestSelling: React.FC<HeaderProps> = () => {
     const initialized = useRef(false)
     const [showLoadMore, setLoadMoreToggle] = useState(true)
@@ -30,8 +25,8 @@ const BestSelling: React.FC<HeaderProps> = () => {
     useEffect(() => {
         if (!initialized.current) {
             initialized.current = true
+            fetch()
         }
-        fetch()
     }, []);
 
     const loadMore = () => {

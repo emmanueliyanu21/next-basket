@@ -1,3 +1,6 @@
 export type BreadCrumbProps ={
-    value: string[]
+    breadcrumbs: {
+        title: string,
+        path?: string
+    }[]
 }

@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ data }) => {
     return (
-        <Container className='my-28'>
+        <Container className='mb-24 mt-5'>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>
