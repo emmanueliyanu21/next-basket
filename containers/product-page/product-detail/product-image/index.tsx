@@ -5,9 +5,15 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';
-import { ProductDetailsProps } from '@/types/Product';
+import { useMediaQuery } from '@mui/material';
+import { ProductDetailsProps, SingleProduct } from '@/types/Product';
+import { isMediaSize, smallScreenSize, smallerScreenSize } from '@/libs/constants'
 
-const ImageGallery = ({ data }: ProductDetailsProps) => {
+type ProductDetailProps = {
+    data: SingleProduct;
+}
+
+const ImageGallery: React.FC<ProductDetailProps> = ({ data }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handlePrevImage = () => {
@@ -17,43 +23,54 @@ const ImageGallery = ({ data }: ProductDetailsProps) => {
     const handleNextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex < data.images.length - 1 ? prevIndex + 1 : 0));
     };
+    
+    const [sm, md] = [isMediaSize(smallerScreenSize), isMediaSize(smallScreenSize) ]
+    const imageWidth = sm ? 250 : md ? 350 : 500;
 
     return (
         <Box>
-            <Box className="relative shadow-sm p-4 mb-4 bg-white rounded-md border border-gray-300">
-                {/* <React.Fragment>
-                   
-                        <Skeleton variant="rectangular" width={500} height={500} />
-                        </React.Fragment> */}
-                <Image
+            <Box  className="relative max-w-lg w-100 shadow-sm p-4 mb-4 bg-white rounded-md border border-gray-300" height={"500px"}>
+                {data.images && data.images[currentImageIndex] ? 
+                <Box display="flex" height={"100%"} width={"100%"}>
+                    <IconButton onClick={handlePrevImage} style={{position: "absolute", top: "50%"}}>
+                        <ChevronLeftIcon fontSize='large' style={{color: "white", fontSize: "50px"}} />
+                    </IconButton>
+                    <Image
                     src={data.images[currentImageIndex]}
-                    alt="image"
-                    width="0" height="0"
-                    sizes="100vw"
+                    alt={data.title}
+                    width={imageWidth} height={imageWidth}
                     style={{
-                        width: '500px', height: '500px', objectFit: 'cover',
-                    }} />
-
-                <Box
+                        width: '100%', height: '100%',
+                         objectFit: 'cover',
+                    }}
+                    priority={true}
+                />
+                   <IconButton onClick={handleNextImage} style={{position: "absolute", top: "50%", right: "10px"}}>
+                        <ChevronRightIcon fontSize='large' style={{color: "white", fontSize: "50px"}} />
+                    </IconButton>
+                </Box>
+                    :
+                    <Skeleton variant="rectangular" width={"100%"} height={"100%"} animation="wave" />
+                }
+                {/* <Box width={iconWidth}
                     sx={{
                         position: 'absolute',
                         bottom: '100px',
                         display: 'flex',
-                        width: '520px',
                         justifyContent: 'space-between',
                         alignItems: 'center',
                     }}
-                >
-                    <IconButton onClick={handlePrevImage}>
+                > */}
+                    {/* <IconButton onClick={handlePrevImage}>
                         <ChevronLeftIcon fontSize='large' />
-                    </IconButton>
-                    <IconButton onClick={handleNextImage}>
+                    </IconButton> */}
+                    {/* <IconButton onClick={handleNextImage}>
                         <ChevronRightIcon fontSize='large' />
-                    </IconButton>
-                </Box>
+                    </IconButton> */}
+                {/* </Box> */}
             </Box>
 
-            <Box display="flex" justifyContent="flex-start" gap={2} className="mt-2">
+            <Box display="flex" justifyContent="flex-start" gap={2} className="sm:w-500 xs:w:300 overflow-hidden h-full overflow-x-auto mt-2">
                 {data.images.map((item, index) => (
                     <Image
                         key={index}
@@ -64,6 +81,7 @@ const ImageGallery = ({ data }: ProductDetailsProps) => {
                         style={{
                             width: '100px', height: '100px', cursor: 'pointer', objectFit: 'cover',
                         }}
+                        priority={true}
                         onClick={() => {
                             setCurrentImageIndex(index);
                         }}

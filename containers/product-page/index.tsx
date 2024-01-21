@@ -7,19 +7,19 @@ import BestSelling from '../home-page/best-selling'
 import Box from '@mui/material/Box';
 import FeaturedCompany from './featured-company'
 import ProductDetail from './product-detail';
-import TabsPanel from './description/tabs-panel';
+import TabsPanel from './tabs-panel';
 import { useSelector } from 'react-redux';
+
 
 const ProductPage = () => {
 
     const data = useSelector((state: RootState) => state.product);
-
     return (
         <>
             <ProductDetail data={data.singleProduct} />
             <TabsPanel data={description} />
             <Box className="bg-lightWhite">
-                <BestSelling dataHeader={bestSellingData.dataHeader} data={data.products} />
+                {/* <BestSelling dataHeader={bestSellingData.dataHeader} /> */}
                 <FeaturedCompany data={featuredCompany} />
             </Box>
         </>

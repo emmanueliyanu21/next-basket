@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import './globals.css'
-import ThemeClient from './rootLayout'
+import ThemeClient from './themeClient'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'

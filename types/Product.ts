@@ -62,17 +62,25 @@ export type ProductIDProp = {
 }
 
 export type ProductDetailsProps = {
-    data: {
-        id: number,
-        title: string,
-        description: string,
-        price: number,
-        discountPercentage: number,
-        rating: number,
-        stock: number,
-        brand: string,
-        category: string,
-        thumbnail: string,
-        images: string[]
-    }
+    data: SingleProduct
+}
+
+
+export type SingleProduct = {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    stock: number;
+    brand: string;
+    category: string;
+    thumbnail: string;
+    images: string[];
+  }
+
+  export type PaginationProps = {
+   skip?: number,
+   limit?: number
 }

@@ -15,11 +15,11 @@ const CircularElement = styled('div')<CircularElementProps>(({ bgColor }) => ({
   background: bgColor || 'blue',  // Use the dynamic background color or default to 'blue'
 }));
 
-const ColorPalette = ({colors}: ColorPaletteProps ) => {
+const ColorPalette = ({ colors }: ColorPaletteProps) => {
   return (
     <Box gap={2} className="flex ">
       {colors.map((color, index) => (
-      <CircularElement key={index} bgColor={color} />
+        <CircularElement key={index} bgColor={color} />
       ))}
     </Box>
   );
