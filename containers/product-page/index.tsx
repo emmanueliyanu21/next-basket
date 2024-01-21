@@ -11,21 +11,21 @@ import ProductDetail from './product-detail';
 import TabsPanel from './tabs-panel';
 import { useSelector } from 'react-redux';
 
-
 const ProductPage = () => {
     const pathname = usePathname()
     const isProductPage = pathname.split('/')[1];
 
-    const data = useSelector((state: RootState) => state.product);
+    const {singleProduct} = useSelector((state: RootState) => state.product);
+
     return (
         <>
-            <Box className={`${isProductPage ? 'md:px-48' : ''}`}>
-                <ProductDetail data={data.singleProduct} />
+            <Box className={`${isProductPage ? 'xl:px-48' : ''}`}>
+                <ProductDetail data={singleProduct}/>
                 <TabsPanel data={description} />
             </Box>
             <Box className="bg-lightWhite">
-                {/* <BestSelling dataHeader={bestSellingData.dataHeader} /> */}
-                <Box className={`${isProductPage ? 'md:px-48' : ''}`}>
+                <BestSelling dataHeader={bestSellingData.dataHeader} />
+                <Box className={`${isProductPage ? 'lg:px-48' : ''}`}>
                 <FeaturedCompany data={featuredCompany} />
                 </Box>
             </Box>

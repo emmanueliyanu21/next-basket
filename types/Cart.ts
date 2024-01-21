@@ -3,9 +3,15 @@ export interface CartItem {
     name: string;
     price: number;
     quantity: number;
-    thumbnail: string
+    thumbnail: string;
+    title?: string
   }
   
   export interface CartOpen {
     isOpen: boolean
+  }
+
+  export interface CartState {
+    isCartModalOpen: boolean;
+    items: CartItem[];
   }

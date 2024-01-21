@@ -37,7 +37,7 @@ const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action
 const Footer: React.FC<{ data: Data }> = ({ data }) => (
     <Box >
         <Box className=" bg-gray-100">
-            <Container className="md:px-32">
+            <Container className="lg:px-32">
                 <Box className="py-12 border-b border-solid border-gray-300" display="flex" justifyContent="space-between">
                     <Image src={data.header.image} alt="Bandage"
                         width="0"

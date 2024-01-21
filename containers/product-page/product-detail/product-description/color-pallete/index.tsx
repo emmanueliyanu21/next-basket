@@ -7,12 +7,11 @@ interface CircularElementProps {
   bgColor?: string;
 }
 
-// Styled component for a circular element
 const CircularElement = styled('div')<CircularElementProps>(({ bgColor }) => ({
   width: 30,
   height: 30,
   borderRadius: '50%',
-  background: bgColor || 'blue',  // Use the dynamic background color or default to 'blue'
+  background: bgColor || 'blue',  
 }));
 
 const ColorPalette = ({ colors }: ColorPaletteProps) => {

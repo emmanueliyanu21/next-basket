@@ -1,10 +1,19 @@
-import { ReactNode } from 'react'
-
+import { StaticImageData } from "next/image";
+import { ReactNode } from "react";
+interface menuIcon {
+    name: string;
+    icon: ReactNode;
+    hasCount?: boolean
+}
+interface MenuItem {
+    url: string;
+    name: string;
+}
 export type NavbarProps = {
     data: {
-        menuItems: string[];
+        menuItems: MenuItem[];
         loginRegisterMenuItem: string;
-        icons: ReactNode[];
-        logo: ReactNode;
+        icons: menuIcon[];
+        logo: StaticImageData;
     };
 };

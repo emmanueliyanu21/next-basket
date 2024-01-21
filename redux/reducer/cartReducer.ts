@@ -1,25 +1,9 @@
+import { ADD_TO_CART, CLOSE_CART_MODAL, DECREMENT_QUANTITY, INCREMENT_QUANTITY, OPEN_CART_MODAL, REMOVE_ITEM } from '../types/cart.types'
+import { CartState } from '@/types/Cart';
 
-export interface CartItem {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    thumbnail: string;
-    title: string
-  }
-  
-
-  export type CartActionTypes =
-    | { type: 'ADD_TO_CART'; payload: CartItem }
-    | { type: 'REMOVE_ITEM'; payload: number } 
-    | { type: 'INCREMENT_QUANTITY'; payload: number } 
-    | { type: 'DECREMENT_QUANTITY'; payload: number }
-    | { type: 'OPEN_CART_MODAL'; } 
-    | { type: 'CLOSE_CART_MODAL'; };
-
-export interface CartState {
-  isCartModalOpen: boolean;
-  items: CartItem[];
+type CartActionTypes = {
+  type: string,
+  payload: any
 }
 
 const initialState: CartState = {
@@ -29,12 +13,10 @@ const initialState: CartState = {
 
 const cartReducer = (state = initialState, action: CartActionTypes): CartState => {
   switch (action.type) {
-    case 'ADD_TO_CART':
-      // Handle adding a product to the cart
+    case ADD_TO_CART:
       const existingProduct = state.items.find((item) => item.id === action.payload.id);
 
       if (existingProduct) {
-        // If the product already exists in the cart, update its quantity
         return {
           ...state,
           items: state.items.map((item) =>
@@ -42,22 +24,19 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
           ),
         };
       } else {
-        // If the product is not in the cart, add it with quantity 1
         return {
           ...state,
           items: [...state.items, { ...action.payload, quantity: 1 }],
         };
       }
 
-    case 'REMOVE_ITEM':
-      // Handle removing a product from the cart
+    case REMOVE_ITEM:
       return {
         ...state,
         items: state.items.filter((item) => item.id !== action.payload),
       };
 
-    case 'INCREMENT_QUANTITY':
-      // Handle incrementing the quantity of a product
+    case INCREMENT_QUANTITY:
       return {
         ...state,
         items: state.items.map((item) =>
@@ -65,8 +44,7 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
         ),
       };
 
-    case 'DECREMENT_QUANTITY':
-      // Handle decrementing the quantity of a product
+    case DECREMENT_QUANTITY:
       return {
         ...state,
         items: state.items.map((item) =>
@@ -74,13 +52,13 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
         ),
       };
 
-    case 'OPEN_CART_MODAL':
+    case OPEN_CART_MODAL:
       return {
         ...state,
         isCartModalOpen: true,
       };
 
-    case 'CLOSE_CART_MODAL':
+    case CLOSE_CART_MODAL:
       return {
         ...state,
         isCartModalOpen: false,

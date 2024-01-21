@@ -1,8 +1,7 @@
 import React from 'react'
 import HeaderContent from '../header-content'
-import Container from '@mui/material/Container';
+import {Container, Box} from '@mui/material';
 import Cards from './cards'
-import Box from '@mui/material/Box';
 import { HeaderProps, ServiceItemProps } from '@/types/Home';
 
 const Services: React.FC<ServiceItemProps & HeaderProps> =  ({ data, dataHeader}) => {

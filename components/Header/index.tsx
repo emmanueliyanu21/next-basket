@@ -11,7 +11,7 @@ function Header() {
   const pathname = usePathname()
   const isProductPage = pathname.split('/')[1];
   return (
-    <Container maxWidth="xl" className={`${isProductPage ? 'md:px-48' : ''} py-2 bg-primary text-white font-montserrat`}>
+    <Container maxWidth="xl" className={`${isProductPage ? 'xl:px-48' : ''} py-2 bg-primary text-white font-montserrat`}>
       <Box className="flex justify-between">
         <Box className="flex items-center gap-4">
           {contactInfo.map((info, index) => (
@@ -23,7 +23,7 @@ function Header() {
             </Box>
           ))}
         </Box>
-        <Box className="hidden md:flex items-center p-2">
+        <Box className="hidden lg:flex items-center p-2">
           <Typography variant="body2" className="ml-1 font-semibold tracking-wider">
             Follow Us and get a chance to win 80% off
           </Typography>

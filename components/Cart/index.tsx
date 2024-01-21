@@ -7,11 +7,9 @@ import { closeCartModal } from '@/redux/action/cart.action';
 import { formatPrice } from '@/libs/util';
 import { Close } from '@mui/icons-material';
 
-
 const CartModal = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart);
-    console.log(cartItems, 'cart');
     const handleClose = () => {
         dispatch(closeCartModal());
     }
@@ -30,16 +28,6 @@ const CartModal = () => {
       };
       
       const { totalPrice, totalQuantity } = getTotalPriceAndQuantity();
-
-      const getCartFromLocalStorage = (): CartItem[] => {
-        const cartData = localStorage.getItem('cart');
-        return cartData ? JSON.parse(cartData) : [];
-      };
-      
-    //   const cart = cartItems.items
-      const saveCartToLocalStorage = (cart: CartItem[]): void => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-      };
 
     return (
         <Modal
@@ -75,16 +63,13 @@ const CartModal = () => {
                     <Divider className='my-8'/>
                     <Box className="flex mb-8 item-center justify-between">
                         <Typography variant="body1" className='text-grey'>
-                            Total: {totalQuantity}
+                        Total Items: {totalQuantity}
                         </Typography>
                         <Typography variant="h6" className='text-black'>
                             {formatPrice(totalPrice)}
                         </Typography>
                     </Box>
                     <Box my={2} textAlign={"right"}>
-                        {/* <Button onClick={handleClose} color="secondary" className="bg-black text-white">
-                            Close
-                        </Button> */}
                         <Button variant="contained" className="bg-secondary text-white" color="secondary">
                             Checkout
                         </Button>
@@ -98,7 +83,6 @@ const CartModal = () => {
                 </Box>
             </Fade>
         </Modal>
-
     );
 };
 

@@ -3,30 +3,32 @@ import MuiSnackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface SnackbarProps {
-  isSnackbar: boolean;
-  value: string;
+  open: boolean;
+  message: string;
+  close: Function
 }
 
-const Snackbar: React.FC<SnackbarProps> = ({ isSnackbar, value }) => {
-  const [open, setOpen] = useState(isSnackbar);
+const Snackbar: React.FC<SnackbarProps> = ({ open, message, close }) => {
+  // console.log(isSnackbar, 'isSnackbar');
+  // const [open, setOpen] = useState(isSnackbar);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <MuiSnackbar
       open={open}
       autoHideDuration={3000} 
-      onClose={handleClose}
+      onClose={() => close()}
     >
       <MuiAlert
         elevation={6}
         variant="filled"
         severity="success"
-        onClose={handleClose}
+        onClose={() => close()}
       >
-        {value}
+        {message}
       </MuiAlert>
     </MuiSnackbar>
   );
