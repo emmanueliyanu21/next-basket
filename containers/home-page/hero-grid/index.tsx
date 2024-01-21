@@ -14,7 +14,7 @@ import { ItemContentProps } from '@/types/Home';
 
 const ItemContent: React.FC<ItemContentProps> = ({ itemCount, category, readMore, variant = 'h5' }) => (
   <Box className="absolute top-0 p-5">
-    <Typography color="primary" className='font-bolder' variant='body2'>{itemCount} Items</Typography>
+    <Typography className='font-bolder text-secondary' variant='body2'>{itemCount} Items</Typography>
     <Typography variant={variant} className={`py-${variant === 'h3' ? 2 : 1} font-montserrat font-bolder capitalize leading-8 text-black tracking-wide`}>{category}</Typography>
     <Typography variant='body2' className='text-black font-bolder font-medium'>{readMore}</Typography>
   </Box>

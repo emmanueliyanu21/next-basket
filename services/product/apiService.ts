@@ -1,12 +1,17 @@
 import { AppDispatch } from '@/store/store';
-import { setProducts, setSingleProduct } from '../../redux/slice/productSlice';
+import { setProducts, setSingleProduct, setLoader } from '../../redux/slice/productSlice';
+import { PaginationProps } from '@/types/Product';
 
-export const fetchProducts = async (dispatch: AppDispatch) => {
+export const fetchProducts = async (dispatch: AppDispatch, page: PaginationProps) => {
+  let {limit = 30, skip = 0} = page
   try {
-    const response = await fetch('https://dummyjson.com/products');
+    dispatch(setLoader(true))
+    const response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`);
     const data = await response.json();
-    dispatch(setProducts(data.products));
+    dispatch(setProducts(data));
+    dispatch(setLoader(false))
   } catch (error) {
+    dispatch(setLoader(false))
   }
 };
 

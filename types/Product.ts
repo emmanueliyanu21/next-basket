@@ -79,3 +79,8 @@ export type SingleProduct = {
     thumbnail: string;
     images: string[];
   }
+
+  export type PaginationProps = {
+   skip?: number,
+   limit?: number
+}

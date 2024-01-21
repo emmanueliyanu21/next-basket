@@ -4,19 +4,17 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import MenuItem from '@mui/material/MenuItem';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { Container, Typography, Box, MenuItem } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { data } from './static-data'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MobileNavbar from './MobileNavbar';
-import { openCartModal } from '../../redux/action/cart.action';
+import { openCartModal } from '../../redux/action/cart.action'
+import { openWishModal } from '../../redux/action/wish.action'
 import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
     const handleClose = () => { }
@@ -33,9 +31,11 @@ const Navbar = () => {
     }
 
     const handleWishList = () => {
+        dispatch(openWishModal());
     }
 
     const handleIconClick = (index) => {
+        console.log('index');
         const actions = [
             handleSearch,
             handleCart,
@@ -54,7 +54,7 @@ const Navbar = () => {
         <Container maxWidth="xl">
             <Box className="flex justify-between py-2">
                 <Box className="flex items-center gap-10 p-2">
-                    <Link href="/" passHref>
+                    <Link href="/">
                         <Image src={data.logo} alt="Bandage" width="0"
                             height="0"
                             sizes="100vw"
@@ -63,8 +63,8 @@ const Navbar = () => {
                     <Box className="hidden md:flex items-center">
                         {data.menuItems.map((item, index) => (
                             <MenuItem key={index} onClick={handleClose}>
-                                <Link href={`/${item.url}`} passHref>
-                                    <Typography className="text-grey font-Montserrat font-bold leading-6 tracking-wide" variant="body2">
+                                <Link href={`/${item.url}`}>
+                                    <Typography className="text-grey font-montserrat font-bold leading-6 tracking-wide" variant="body2">
                                         {item.name}
                                         {item.name === 'Shop' ? <ExpandMoreIcon /> : ''}
                                     </Typography>
@@ -75,8 +75,8 @@ const Navbar = () => {
                 </Box>
                 <Box className="flex gap-2 items-center p-2">
                     <MenuItem variant="body2" className='hidden md:flex secondary' onClick={handleClose}>
-                        <PersonOutlineIcon fontSize="small" color="secondary" />
-                        <Typography className='font-bold tracking-wider' color='secondary' variant="body2">
+                        <PersonOutlineIcon fontSize="small" className='text-secondary' />
+                        <Typography className='font-bold tracking-wider text-secondary'  variant="body2">
                             {data.loginRegisterMenuItem}
                         </Typography>
                     </MenuItem>
@@ -97,7 +97,6 @@ const Navbar = () => {
             </Box>
             {isVisible ? <MobileNavbar data={data} /> : ''}
         </Container>
-
     )
 }
 

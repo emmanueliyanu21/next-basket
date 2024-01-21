@@ -1,35 +1,33 @@
 
-export interface CartItem {
+export interface WishItem {
     id: number;
     name: string;
     price: number;
     quantity: number;
     thumbnail: string;
-    title: string
   }
   
-
-  export type CartActionTypes =
-    | { type: 'ADD_TO_CART'; payload: CartItem }
+  export type WishActionTypes =
+    | { type: 'ADD_TO_WISH'; payload: WishItem }
     | { type: 'REMOVE_ITEM'; payload: number } 
-    | { type: 'INCREMENT_QUANTITY'; payload: number } 
+    | { type: 'INCREMENT_QUANTITY'; payload: number }
     | { type: 'DECREMENT_QUANTITY'; payload: number }
-    | { type: 'OPEN_CART_MODAL'; } 
-    | { type: 'CLOSE_CART_MODAL'; };
+    | { type: 'OPEN_WISH_MODAL'; } 
+    | { type: 'CLOSE_WISH_MODAL'; };
 
-export interface CartState {
+export interface WishState {
   isCartModalOpen: boolean;
-  items: CartItem[];
+  items: WishItem[];
 }
 
-const initialState: CartState = {
+const initialState: WishState = {
   isCartModalOpen: false,
   items: [],
 };
 
-const cartReducer = (state = initialState, action: CartActionTypes): CartState => {
+const wishReducer = (state = initialState, action: WishActionTypes): WishState => {
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case 'ADD_TO_WISH':
       // Handle adding a product to the cart
       const existingProduct = state.items.find((item) => item.id === action.payload.id);
 
@@ -74,13 +72,13 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
         ),
       };
 
-    case 'OPEN_CART_MODAL':
+    case 'OPEN_WISH_MODAL':
       return {
         ...state,
         isCartModalOpen: true,
       };
 
-    case 'CLOSE_CART_MODAL':
+    case 'CLOSE_WISH_MODAL':
       return {
         ...state,
         isCartModalOpen: false,
@@ -91,4 +89,4 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
   }
 };
 
-export default cartReducer;
+export default wishReducer;

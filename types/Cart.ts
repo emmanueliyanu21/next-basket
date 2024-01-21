@@ -6,3 +6,6 @@ export interface CartItem {
     thumbnail: string
   }
   
+  export interface CartOpen {
+    isOpen: boolean
+  }
