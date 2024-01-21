@@ -21,6 +21,7 @@ const breadcrumb = [
         title: "shop"
     },
 ]
+
 const ProductPage = () => {
     const pathname = usePathname()
     const isProductPage = pathname.split('/')[1];
@@ -39,6 +40,7 @@ const ProductPage = () => {
                     <Box className={`${isProductPage ? 'lg:px-48' : ''}`}>
                         <FeaturedCompany data={featuredCompany} />
                     </Box>
+
                 </Box>
             </Box>
         </>
