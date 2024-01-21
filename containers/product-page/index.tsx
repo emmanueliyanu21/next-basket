@@ -30,7 +30,6 @@ const ProductPage = () => {
         <>
             <Box className={`${isProductPage ? 'xl:px-48' : ''} mt-20`}>
                 <Breadcrumb breadcrumbs={breadcrumb} />
-
                 <Box>
                     <ProductDetail data={singleProduct} />
                     <TabsPanel data={description} />

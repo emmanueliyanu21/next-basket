@@ -11,7 +11,7 @@ const Breadcrumb = ({ breadcrumbs }: BreadCrumbProps) => {
   return (
     <Breadcrumbs className='ml-4' aria-label="breadcrumb" separator={<ChevronRight style={{color: "#BDBDBD", fontSize: "35px"}}/>}>
       {breadcrumbs.map(({ path, title }, index) => (
-       <div className="capitalize font-montserrat font-semibold">
+       <div key={index} className="capitalize font-montserrat font-semibold">
          {path ? <Link href={path}><Typography className="text-black" key={index} color="textPrimary">
           {title}
         </Typography></Link> : <Typography className='text-lightGrey' key={index} color="textPrimary">

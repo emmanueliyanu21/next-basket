@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';
 import { SingleProduct } from '@/types/Product';
 import { isMediaSize, smallScreenSize, smallerScreenSize } from '@/libs/constants'
