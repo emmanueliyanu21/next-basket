@@ -1,3 +1,4 @@
+
 import { Product, SingleProduct } from "@/types/Product";
 import { ADD_TO_CART, CLOSE_CART_MODAL, DECREMENT_QUANTITY, INCREMENT_QUANTITY, OPEN_CART_MODAL, REMOVE_ITEM } from '../types/cart.types'
 import { CartItem } from './../../types/Cart'
@@ -38,3 +39,4 @@ export const getCartFromLocalStorage = (): CartItem[] => {
 };
 
 export const saveCartToLocalStorage = (product: SingleProduct[]): void => localStorage.setItem('cart', JSON.stringify(product));
+

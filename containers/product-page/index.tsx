@@ -21,11 +21,11 @@ const breadcrumb = [
         title: "shop"
     },
 ]
+
 const ProductPage = () => {
     const pathname = usePathname()
     const isProductPage = pathname.split('/')[1];
     const { singleProduct } = useSelector((state: RootState) => state.product);
-
     return (
         <>
             <Box className={`${isProductPage ? 'xl:px-48' : ''} mt-20`}>
@@ -40,6 +40,7 @@ const ProductPage = () => {
                     <Box className={`${isProductPage ? 'lg:px-48' : ''}`}>
                         <FeaturedCompany data={featuredCompany} />
                     </Box>
+
                 </Box>
             </Box>
         </>
