@@ -9,14 +9,14 @@ import Paper from '@mui/material/Paper';
 import { Image1, Image2, Image3, Image4 } from './static-data'
 import { Typography } from '@mui/material';
 
-import  {data}  from './static-data'
+import { data } from './static-data'
 import { ItemContentProps } from '@/types/Home';
 
 const ItemContent: React.FC<ItemContentProps> = ({ itemCount, category, readMore, variant = 'h5' }) => (
   <Box className="absolute top-0 p-5">
-    <Typography className='font-bolder text-secondary' variant='body2'>{itemCount} Items</Typography>
-    <Typography variant={variant} className={`py-${variant === 'h3' ? 2 : 1} font-montserrat font-bolder capitalize leading-8 text-black tracking-wide`}>{category}</Typography>
-    <Typography variant='body2' className='text-black font-bolder font-medium'>{readMore}</Typography>
+    <Typography className='font-bolder text-lightGreen tracking-wider' variant='body2'>{itemCount} Items</Typography>
+    <Typography variant={variant} className={`py-${variant === 'h3' ? 4 : 2} font-montserrat font-bolder capitalize leading-8 text-black tracking-wide`}>{category}</Typography>
+    <Typography variant='body2' className='text-black font-medium '>{readMore}</Typography>
   </Box>
 );
 
@@ -33,39 +33,41 @@ const HeroGrid = () => {
 
   return (
     <Container className='my-24' maxWidth="lg">
-  <Grid container spacing={2}>
-    <Grid item xs={12} sm={6} md={5}>
-      <Item className='relative'>
-        <Box>
-          <Image src={Image1} width={465} height={600} style={{ maxHeight: '605px' }} alt="Bandage" />
-        </Box>
-        <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} variant={'h3'} />
-      </Item>
-    </Grid>
-    <Grid item xs={12} sm={6} md={7} className='font-'>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Item className='relative '>
-            <Image src={Image2} width={678} height={300} alt="Bandage" />
-            <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
+        <Grid item xs={12} sm={6} md={5}>
+          <Item className='relative'>
+            <Box>
+              <Image src={Image1} width={500} height={600} style={{ maxHeight: '616px' }} alt="Bandage" />
+            </Box>
+            <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} variant={'h3'} />
           </Item>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Item className='relative '>
-            <Image src={Image3} width={331} height={300} alt="Bandage" />
-            <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
-          </Item>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Item className='relative '>
-            <Image src={Image4} width={331} height={300} alt="Bandage" />
-            <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
-          </Item>
+        <Grid item xs={12} sm={6} md={7} className='font-'>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Item className='relative '>
+                <Image src={Image2} width={678} height={300} alt="Bandage" />
+                <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
+              </Item>
+            </Grid>
+            <Grid container spacing={0} className='mt-4 ml-4 '>
+              <Grid item xs={12} sm={6} className='mr-[-10px]' >
+                <Item className='relative '>
+                  <Image src={Image3} width={331} height={300} alt="Bandage" />
+                  <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
+                </Item>
+              </Grid>
+              <Grid item xs={12} sm={6} className=''>
+                <Item className='relative '>
+                  <Image src={Image4} width={331} height={300} alt="Bandage" />
+                  <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
+                </Item>
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  </Grid>
-</Container>
+    </Container>
 
   )
 }

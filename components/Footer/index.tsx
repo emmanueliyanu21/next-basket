@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -18,28 +18,26 @@ const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action
             {list?.map((item, index) => (
                 <ListItem disablePadding key={index}>
                     <ListItemButton className="mb-0 pb-0 pl-0">
-                        <ListItemText className="mb-0 pb-0 text-grey text-montserrat text-base font-bold leading-6 tracking-wide" primary={item} />
+                        <ListItemText className="mb-0 pb-0 text-grey font-montserrat text-base font-bold leading-6 tracking-wide" primary={item} />
                     </ListItemButton>
                 </ListItem>
             ))}
         </List> :
-        <Box>
-            <Box className="mt-6" width={"100%"} height={"70px"}>
-                <TextField style={{width: "70%", height: "60px"}} className='bg-lightWhite border-none' id="outlined-basic" label={text} variant="outlined" />
-                <Button style={{width: "30%", height: "56px", marginLeft: "-5px"}} size='large' className='py-3.5 border-none bg-secondary text-white shadow-none' variant="contained">{action}</Button>
-            </Box>
-                <Typography className='font-light text-xs pt-2 text-grey '>{caption}</Typography>
+            <Box>
+                <Box className="mt-6" width={"100%"} height={"70px"}>
+                    <TextField style={{ width: "60%", height: "60px", borderRadius: "2px" }} className='bg-lightWhite border-none' id="outlined-basic" label={text} variant="outlined" />
+                    <Button style={{ width: "40%", height: "56px", marginLeft: "-15px", borderRadius: "2px" }} size='large' className='py-4 border-none bg-secondary text-white shadow-none' variant="contained">{action}</Button>
                 </Box>
-
-            }
-
+                <Typography className='font-light text-xs pt-2 text-grey '>{caption}</Typography>
+            </Box>
+        }
     </Box>
 );
 
 const Footer: React.FC<{ data: Data }> = ({ data }) => (
     <Box >
         <Box className=" bg-gray-100">
-            <Container >
+            <Container className="md:px-32">
                 <Box className="py-12 border-b border-solid border-gray-300" display="flex" justifyContent="space-between">
                     <Image src={data.header.image} alt="Bandage"
                         width="0"
@@ -54,7 +52,7 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
                 </Box>
             </Container>
         </Box>
-        <Container>
+        <Container className="md:px-32">
             <Box flexWrap="wrap" display="flex" justifyContent="space-between">
                 <DynamicList {...data.companyInfo} />
                 <DynamicList {...data.legal} />
@@ -64,7 +62,7 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
             </Box>
         </Container>
         <Box className="py-8 bg-gray-100">
-            <Container>
+            <Container className="md:px-32">
                 <Typography className="text-grey text-sm font-montserrat font-medium leading-6 tracking-wide">{data.reserved}</Typography>
             </Container>
         </Box>
