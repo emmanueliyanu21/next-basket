@@ -1,11 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import {Box, Container, Typography, Grid, Paper} from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import StarRating from '@/components/Shared/Rating';
 import { Testimonialprops } from '@/types/Home';
 

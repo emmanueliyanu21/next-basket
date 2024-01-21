@@ -12,7 +12,8 @@ import { data } from './static-data'
 import MobileNavbar from './MobileNavbar';
 import { openCartModal } from '../../redux/action/cart.action'
 import { openWishModal } from '../../redux/action/wish.action'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -20,6 +21,16 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
+    const {cart, wishList} = useSelector((state:RootState) => ({cart: state.cart, wishList: state.wishList}));
+
+    const getCount = (name:String) => {
+        if(name === "cart"){
+            return cart?.items.length
+        }
+        if (name === "wishlist"){
+            return wishList?.items.length
+        }
+    }
     const handleClose = () => { }
 
     const handleSearch = () => {
@@ -32,13 +43,12 @@ const Navbar = () => {
     const handleMobile = () => {
         setIsVisible(true)
     }
-
     const handleWishList = () => {
+        console.log('i was touched');
         dispatch(openWishModal());
     }
 
-    const handleIconClick = (index) => {
-        console.log('index');
+    const handleIconClick = (index:number) => {
         const actions = [
             handleSearch,
             handleCart,
@@ -52,9 +62,9 @@ const Navbar = () => {
             action();
         }
     };
-    const count = '1'
+    // const count = '1'
     return (
-        <Container maxWidth="xl" className={isProductPage ? 'md:px-48' : ''}>
+        <Container maxWidth="xl" className={isProductPage ? 'xl:px-48' : ''}>
             <Box className="flex justify-between py-2 mt-2">
                 <Box className="flex items-center gap-28 p-2">
                     <Link href="/">
@@ -77,26 +87,28 @@ const Navbar = () => {
                     </Box>
                 </Box>
                 <Box className="flex gap-4 items-center p-2">
-                    <MenuItem variant="body2" className='hidden md:flex secondary' onClick={handleClose}>
+                    <MenuItem className='hidden lg:flex secondary' onClick={handleClose}>
                         <PersonOutlineIcon fontSize="small" className='text-secondary' />
                         <Typography className='font-bold tracking-wider text-secondary' variant="body2">
                             {data.loginRegisterMenuItem}
                         </Typography>
                     </MenuItem>
-                    {data.icons.map((icon, index) => (
-                        (index !== 2 || !isMobile) && (
-                            (index !== 3 || isMobile) && (
-                                <span
+                    {data.icons.map(({icon, name, hasCount}, index) => {
+                        let count = hasCount && getCount(name)
+                        return (name !== "wishlist" || !isMobile) && (
+                            (name !== "hamburger" || isMobile) && (
+                                <Box position={"relative"}
+                                display={"flex"}
                                     key={index}
                                     className={isMobile ? "text-black cursor-pointer" : "text-secondary cursor-pointer"}
                                     onClick={() => handleIconClick(index)}
                                 >
-                                    {icon} &nbsp;
-                                    {count}
-                                </span>
+                                    <span>{icon}</span> &nbsp;
+                                    {count ? <span >{count}</span> : ""}
+                                </Box>
                             )
                         )
-                    ))}
+                            })}
                 </Box>
             </Box>
             {isVisible ? <MobileNavbar data={data} /> : ''}

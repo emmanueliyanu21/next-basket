@@ -1,28 +1,19 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Modal, Typography, Button, IconButton } from '@mui/material';
-import { incrementQuantity, decrementQuantity, removeItem } from '../../../redux/action/cart.action';
+import { Box,  Typography, IconButton } from '@mui/material';
+import { removeItem } from '../../../redux/action/cart.action';
 import { formatPrice } from '../../../libs/util';
 import { RootState } from '../../../store/store';
 import { Delete } from '@mui/icons-material';
-import { CartItem } from '@/types/Cart';
+import { WishItem } from '@/types/WishList';
 
-type intems = {
-  item: CartItem
+type WishListProps = {
+  item: WishItem
 }
 
-const CartItem = ({ item }: intems) => {
+const WishListItem = ({ item }: WishListProps) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
-
-  const handleIncrement = (productId: number) => {
-    dispatch(incrementQuantity(productId));
-  };
-
-  const handleDecrement = (productId: number) => {
-    dispatch(decrementQuantity(productId));
-  };
 
   const deleteItem = (productId: number) => {
     dispatch(removeItem(productId))
@@ -43,25 +34,6 @@ const CartItem = ({ item }: intems) => {
             </Box>
           </Box>
          <Box display={"flex"}>
-         <Box className="flex items-center space-x-2">
-            <Button
-            sx={{width: "10px"}}
-              variant="outlined"
-              color="primary"
-              onClick={() => handleDecrement(item.id)}
-              disabled={item.quantity <= 1}
-            >
-              -
-            </Button>
-            <Typography>{item.quantity}</Typography>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => handleIncrement(item.id)}
-            >
-              +
-            </Button>
-          </Box>
           <IconButton onClick={() => deleteItem(item.id)}>
             <Delete style={{color: "#8B0000"}}/>
           </IconButton>
@@ -72,4 +44,4 @@ const CartItem = ({ item }: intems) => {
   );
 };
 
-export default CartItem;
+export default WishListItem;

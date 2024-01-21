@@ -15,10 +15,10 @@ const data = {
     ],
     loginRegisterMenuItem: 'Login / Register',
     icons: [
-        <SearchIcon fontSize="small" key="search"  />,
-        <ShoppingCartIcon fontSize="small" key="cart"  />,
-        <FavoriteIcon fontSize="small" key="wishlist"  />,
-        <MenuIcon fontSize="small" key="menu"  />,
+        {name: "search", icon: <SearchIcon fontSize="small" key="search"  />},
+        {name: "cart", icon: <ShoppingCartIcon fontSize="small" key="cart"  />, hasCount: true},
+        {name: "wishlist", icon: <FavoriteIcon fontSize="small" key="wishlist"  />, hasCount: true},
+       { name: "hamburger", icon:<MenuIcon fontSize="small" key="menu"  />},
     ],
    logo: Bandage
 }

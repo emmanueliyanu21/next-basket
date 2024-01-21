@@ -11,7 +11,7 @@ export default function MobileNavbar({data}: NavbarProps) {
       <MenuList className='text-center'>
         {data.menuItems.map((item, index) => (
             <MenuItem key={index}>
-            <ListItemText className="font-montserrat text-grey font-Montserrat text-2xl font-normal leading-10 tracking-wide">{item}</ListItemText>
+            <ListItemText className="font-montserrat text-grey font-Montserrat text-2xl font-normal leading-10 tracking-wide">{item.name}</ListItemText>
           </MenuItem>
         ))}
         <MenuItem>
@@ -19,7 +19,7 @@ export default function MobileNavbar({data}: NavbarProps) {
         </MenuItem>
         {data.icons.map((item, index) => (
             <MenuItem key={index}>
-            <ListItemText>{item}</ListItemText>
+            <span>{item.icon}</span>
           </MenuItem>
         ))}
       </MenuList>

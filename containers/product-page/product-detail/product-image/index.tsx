@@ -5,8 +5,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';
-import { useMediaQuery } from '@mui/material';
-import { ProductDetailsProps, SingleProduct } from '@/types/Product';
+import { SingleProduct } from '@/types/Product';
 import { isMediaSize, smallScreenSize, smallerScreenSize } from '@/libs/constants'
 
 type ProductDetailProps = {
@@ -52,22 +51,6 @@ const ImageGallery: React.FC<ProductDetailProps> = ({ data }) => {
                     :
                     <Skeleton variant="rectangular" width={"100%"} height={"100%"} animation="wave" />
                 }
-                {/* <Box width={iconWidth}
-                    sx={{
-                        position: 'absolute',
-                        bottom: '100px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                    }}
-                > */}
-                    {/* <IconButton onClick={handlePrevImage}>
-                        <ChevronLeftIcon fontSize='large' />
-                    </IconButton> */}
-                    {/* <IconButton onClick={handleNextImage}>
-                        <ChevronRightIcon fontSize='large' />
-                    </IconButton> */}
-                {/* </Box> */}
             </Box>
 
             <Box display="flex" justifyContent="flex-start" gap={2} className="sm:w-500 xs:w:300 overflow-hidden h-full overflow-x-auto mt-2">

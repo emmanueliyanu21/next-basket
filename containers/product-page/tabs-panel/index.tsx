@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+import {Box, Container, Tabs, Tab} from '@mui/material';
 import Description from './description/index';
 import { TabPanelProps, DescriptionProps } from '@/types/Product';
 
@@ -45,7 +41,6 @@ const TabsPanel = ({ data }: DescriptionProps) => {
     { label: 'Description', content: <Description data={data} /> },
     { label: 'Additional Description', content: 'Additional Item' },
     { label: `Review(0)`, content: 'Review' },
-    // Add more tabs as needed
   ];
 
   return (

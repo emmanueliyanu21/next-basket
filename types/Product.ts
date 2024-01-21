@@ -1,17 +1,8 @@
 export type ProductCardProps = {
-    data: {
-        id: number,
-        imageUrl: string;
-        title: string;
-        category: string;
-        discountPercentage: number,
-        price: number,
-        images: string[]
-    }[],
+    data: Product[],
 }
 
 export type Product = {
-    data: {
         id: number,
         imageUrl: string;
         title: string;
@@ -19,7 +10,6 @@ export type Product = {
         discountPercentage: number,
         price: number,
         images: string[]
-    }[],
 }
 
 export type DescriptionProps = {
@@ -65,7 +55,6 @@ export type ProductDetailsProps = {
     data: SingleProduct
 }
 
-
 export type SingleProduct = {
     id: number;
     title: string;
@@ -78,9 +67,22 @@ export type SingleProduct = {
     category: string;
     thumbnail: string;
     images: string[];
-  }
+}
 
-  export type PaginationProps = {
-   skip?: number,
-   limit?: number
+export type PaginationProps = {
+    skip?: number,
+    limit?: number
+}
+
+export interface ProductState {
+    bestSelling: BestSellingProduct;
+    singleProduct: SingleProduct;
+    loading: boolean
+}
+
+export interface BestSellingProduct {
+    products: Product[];
+    limit: number;
+    total: number;
+    skip: number;
 }

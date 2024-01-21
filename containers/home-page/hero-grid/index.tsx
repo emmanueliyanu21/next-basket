@@ -1,14 +1,8 @@
 import React from 'react'
 import Image from 'next/image';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import {Grid, Box, Container, Paper, Typography} from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-
 import { Image1, Image2, Image3, Image4 } from './static-data'
-import { Typography } from '@mui/material';
-
 import { data } from './static-data'
 import { ItemContentProps } from '@/types/Home';
 

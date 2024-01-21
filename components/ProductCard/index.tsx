@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Typography } from '@mui/material';
 import { formatPrice } from '../../libs/util'
-
 import { ProductCardProps } from '../../types/Product'
 
 const ProductCard = ({ data }: ProductCardProps) => {

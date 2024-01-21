@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import {Box, Typography} from '@mui/material';
 import { ServiceItemProps } from '@/types/Home';
 
 const Cards = ({data}: ServiceItemProps ) => {

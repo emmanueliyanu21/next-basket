@@ -1,11 +1,8 @@
 import React from 'react'
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-import ImageDetails from './product-description';
+import ProductDescription from './product-description';
 import ProductImage from './product-image';
 import { SingleProduct } from '@/types/Product';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import { Paper, Container, Grid, styled } from '@mui/material';
 
 type ProductDetailProps = {
     data: SingleProduct;
@@ -31,7 +28,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ data }) => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
                     <Item>
-                        <ImageDetails data={data} />
+                        <ProductDescription data={data} />
                     </Item>
                 </Grid>
             </Grid>

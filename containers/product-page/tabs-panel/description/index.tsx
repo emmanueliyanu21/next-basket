@@ -1,10 +1,8 @@
 "use client"
 
-import React from 'react'
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Image from 'next/image';
-import { Typography } from '@mui/material';
+import React from 'react'
+import {Box, Grid, Typography} from '@mui/material';
 import { DescriptionProps } from '@/types/Product';
 
 const Description = ({ data }: DescriptionProps) => {

@@ -1,38 +1,22 @@
+import { WishState } from '@/types/WishList';
+import { ADD_TO_WISH, REMOVE_ITEM, OPEN_WISH_MODAL, CLOSE_WISH_MODAL, } from '../types/wishList.types'
 
-export interface WishItem {
-    id: number;
-    name: string;
-    price: number;
-    quantity: number;
-    thumbnail: string;
-  }
-  
-  export type WishActionTypes =
-    | { type: 'ADD_TO_WISH'; payload: WishItem }
-    | { type: 'REMOVE_ITEM'; payload: number } 
-    | { type: 'INCREMENT_QUANTITY'; payload: number }
-    | { type: 'DECREMENT_QUANTITY'; payload: number }
-    | { type: 'OPEN_WISH_MODAL'; } 
-    | { type: 'CLOSE_WISH_MODAL'; };
-
-export interface WishState {
-  isCartModalOpen: boolean;
-  items: WishItem[];
+type WishActionTypes = {
+  type: string,
+  payload: any
 }
 
 const initialState: WishState = {
-  isCartModalOpen: false,
+  isWishModalOpen: false,
   items: [],
 };
 
 const wishReducer = (state = initialState, action: WishActionTypes): WishState => {
   switch (action.type) {
-    case 'ADD_TO_WISH':
-      // Handle adding a product to the cart
+    case ADD_TO_WISH:
       const existingProduct = state.items.find((item) => item.id === action.payload.id);
 
       if (existingProduct) {
-        // If the product already exists in the cart, update its quantity
         return {
           ...state,
           items: state.items.map((item) =>
@@ -40,48 +24,28 @@ const wishReducer = (state = initialState, action: WishActionTypes): WishState =
           ),
         };
       } else {
-        // If the product is not in the cart, add it with quantity 1
         return {
           ...state,
           items: [...state.items, { ...action.payload, quantity: 1 }],
         };
       }
 
-    case 'REMOVE_ITEM':
-      // Handle removing a product from the cart
+    case REMOVE_ITEM:
       return {
         ...state,
         items: state.items.filter((item) => item.id !== action.payload),
       };
 
-    case 'INCREMENT_QUANTITY':
-      // Handle incrementing the quantity of a product
+    case OPEN_WISH_MODAL:
       return {
         ...state,
-        items: state.items.map((item) =>
-          item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item
-        ),
+        isWishModalOpen: true,
       };
 
-    case 'DECREMENT_QUANTITY':
-      // Handle decrementing the quantity of a product
+    case CLOSE_WISH_MODAL:
       return {
         ...state,
-        items: state.items.map((item) =>
-          item.id === action.payload ? { ...item, quantity: Math.max(1, item.quantity - 1) } : item
-        ),
-      };
-
-    case 'OPEN_WISH_MODAL':
-      return {
-        ...state,
-        isCartModalOpen: true,
-      };
-
-    case 'CLOSE_WISH_MODAL':
-      return {
-        ...state,
-        isCartModalOpen: false,
+        isWishModalOpen: false,
       };
 
     default:

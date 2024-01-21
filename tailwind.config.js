@@ -38,6 +38,15 @@ module.exports = {
         bold: 600,
         bolder: 700
       },
+      // screens: {
+      //   'xs': '0px',
+      //   'sm': '600px',
+      //   'md': '960px',
+      //   'lg': '1100px',
+      //   'xl': '1920px',
+      //   // Add your custom breakpoints here
+      //   '2xl': '2400px',
+      // },
     },
   },
   plugins: [],
