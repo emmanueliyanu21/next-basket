@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import ImageDetails from './image-details';
+import ImageDetails from './product-description';
 import ProductImage from './product-image';
 import { SingleProduct } from '@/types/Product';
 import { styled } from '@mui/material/styles';
@@ -24,12 +24,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ data }) => {
     return (
         <Container className='my-28'>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6} className='text-left'>
+                <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>
                         <ProductImage data={data} />
                     </Item>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12} md={6}>
                     <Item>
                         <ImageDetails data={data} />
                     </Item>

@@ -6,6 +6,7 @@ import store from '../store/store';
 
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '../libs/theme'
+import CartModal from '@/components/Cart';
 
 export default function ThemeClient({
     children,
@@ -15,6 +16,7 @@ export default function ThemeClient({
     return (
         <Provider store={store}>
             <ToastContainer />
+            <CartModal />
             <ThemeProvider theme={theme}>
                 {children}
             </ThemeProvider>

@@ -14,17 +14,21 @@ import BestSelling from './best-selling'
 import { fetchProducts } from '@/services/product/apiService';
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.product.products);
+  // const dispatch = useDispatch();
+  // const {products} = useSelector((state: RootState) => {
+  //   console.log(state, "state");
+    
+  //   return state.product.bestSelling
+  // });
 
-  useEffect(() => {
-    fetchProducts(dispatch);
-  }, [dispatch]);
+  // useEffect(() => {
+  //   fetchProducts(dispatch);
+  // }, [dispatch]);
 
   return (
     <>
       <HeroGrid />
-      <BestSelling dataHeader={bestSellingData.dataHeader} data={products} />
+      <BestSelling dataHeader={bestSellingData.dataHeader} />
       <Services data={serviceData.data} dataHeader={serviceData.dataHeader} />
       <FeaturedPost data={featurePost.topContent} cards={featurePost.cards} />
       <Testimonials data={testimonialData} />

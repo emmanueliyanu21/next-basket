@@ -8,7 +8,7 @@ const items = ['Home', 'Shoes']
 const Breadcrumb = () => {
   return (
     <Breadcrumbs aria-label="breadcrumb" separator="/">
-      <Link color="inherit" href="/">
+      <Link href="/">
         <HomeIcon />
       </Link>
       {items.map((item, index) => (

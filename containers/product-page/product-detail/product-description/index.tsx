@@ -9,9 +9,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
-import { ProductDetailsProps, SingleProduct } from '@/types/Product';
+import { SingleProduct } from '@/types/Product';
 
-import { addToCart } from '../../../../redux/action/cart.action';
+import { addToCart, openCartModal } from '../../../../redux/action/cart.action';
 import Snackbar from '@/components/Snackbar';
 
 type ProductDetailProps = {
@@ -24,6 +24,7 @@ const ImageDetails: React.FC<ProductDetailProps> = ({ data }) => {
 
     const handleAddToCart = () => {
         dispatch(addToCart(data));
+        dispatch(openCartModal());
         setSnackbarOpen(true);
     };
 
@@ -52,19 +53,19 @@ const ImageDetails: React.FC<ProductDetailProps> = ({ data }) => {
                 <Typography className="font-Montserrat text-sm font-medium tracking-wider text-grey">
                     Availability :
                 </Typography>
-                <Typography className="font-Montserrat text-sm font-bold tracking-wide text-secondary">
-                    In Stock
+                <Typography className="font-Montserrat text-sm font-bold tracking-wide">
+                   {data.stock > 0 ? <span className='text-secondary'>In Stock</span> : <span className='text-red'>Out of Stock</span> } 
                 </Typography>
             </Box>
-
-            <Box className="pb-14 pt-4 mt-36 border-t-2 border-gray-100">
+            <Box><Typography>{data.description}</Typography></Box>
+            <Box className="pb-14 pt-4 mt-32 border-t-2 border-gray-100">
                 <ColorPalette colors={colors} />
             </Box>
-            <Box display="flex" gap={2} justifyContent="start" alignContent="center">
+            <Box className="xs:flex flex-wrap" display="flex" gap={2} justifyContent="start" alignContent="center">
                 <Button data={buttonInfo} />
                 <Box className="pt-1" display="flex" gap={2} justifyContent="start" alignContent="center">
                     <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><FavoriteIcon /></Box>
-                    <Box onClick={handleAddToCart} className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
+                    <Box onClick={handleAddToCart} className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
                     <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><VisibilityIcon /></Box>
                 </Box>
             </Box>

@@ -20,7 +20,7 @@ function CustomTabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography variant="body2">{children}</Typography>
+          <div>{children}</div>
         </Box>
       )}
     </Box>
@@ -52,9 +52,9 @@ const TabsPanel = ({ data }: DescriptionProps) => {
     <Container>
       <Box className="pb-20s">
         <Box className="mb-12" display="flex" justifyContent="center" sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tabs className="overflow-x-auto" value={value} onChange={handleChange} aria-label="basic tabs example">
             {tabsData.map((tab, index) => (
-              <Tab key={index} label={tab.label} {...a11yProps(index)} />
+              <Tab className='sm:w-500 xs:w-300 overflow-hidden' key={index} label={tab.label} {...a11yProps(index)} />
             ))}
           </Tabs>
         </Box>

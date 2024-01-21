@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Modal, Typography, Button } from '@mui/material';
-import { incrementQuantity, decrementQuantity } from '../../../redux/action/cart.action';
+import { Box, Modal, Typography, Button, IconButton } from '@mui/material';
+import { incrementQuantity, decrementQuantity, removeItem } from '../../../redux/action/cart.action';
 import { formatPrice } from '../../../libs/util';
 import { RootState } from '../../../store/store';
 import { CartItem } from '@/redux/reducer/cartReducer';
+import { Delete } from '@mui/icons-material';
 
 type intems = {
   item: CartItem
@@ -14,7 +15,8 @@ type intems = {
 const CartItem = ({ item }: intems) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
-
+  console.log(cart, 'cart')
+  console.log(item, 'item')
 
   const handleIncrement = (productId: number) => {
     dispatch(incrementQuantity(productId));
@@ -24,30 +26,28 @@ const CartItem = ({ item }: intems) => {
     dispatch(decrementQuantity(productId));
   };
 
-  const getTotalPrice = () => {
-    console.log('I was clicked')
-    // return cart.reduce((total, item) => total + item.quantity * item.price, 0);
-  };
+  const deleteItem = (productId: number) => {
+    dispatch(removeItem(productId))
+  }
 
   return (
     <Box >
-      <Box className="bg-white p-4 max-w-md mx-auto mt-10">
-        <Typography variant="body2" className="mb-4">
-          Shopping Cart
-        </Typography>
-        <Box key={item.id} className="flex items-center justify-between mb-4">
+      <Box className="bg-white py-2 mt-10">
+        <Box key={item.id} className="flex items-center justify-between">
           <Box className="flex items-center space-x-4">
             <Image src={item.thumbnail} alt="Bandage" width="0"
-                            height="0"
-                            sizes="100vw"
-                            style={{ width: '30px', height: 'auto' }} />
+              height="0"
+              sizes="100vw"
+              style={{ width: '60px', height: 'auto' }} />
             <Box>
-              <Typography variant="subtitle1">{item.name}</Typography>
+              <Typography variant="subtitle1">{item.title}</Typography>
               <Typography variant="body2">{formatPrice(item.price)}</Typography>
             </Box>
           </Box>
-          <Box className="flex items-center space-x-2">
+         <Box display={"flex"}>
+         <Box className="flex items-center space-x-2">
             <Button
+            sx={{width: "10px"}}
               variant="outlined"
               color="primary"
               onClick={() => handleDecrement(item.id)}
@@ -64,15 +64,11 @@ const CartItem = ({ item }: intems) => {
               +
             </Button>
           </Box>
+          <IconButton onClick={() => deleteItem(item.id)}>
+            <Delete style={{color: "#8B0000"}}/>
+          </IconButton>
+         </Box>
         </Box>
-        <Typography variant="h6" className="mb-4">
-          Total: 
-          {/* {formatPrice(getTotalPrice(120))} */}
-        </Typography>
-
-        {/* <Button variant="contained" color="primary" onClick={onClose}>
-          Close
-        </Button> */}
       </Box>
     </Box>
   );
