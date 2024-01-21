@@ -9,7 +9,7 @@ import { ProductCardProps } from '../../types/Product'
 
 const ProductCard = ({ data }: ProductCardProps) => {
     return (
-        <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(183px, 1fr))" gap={2}>
+        <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={2}>
             {data.map((item, index) => (
                 <Box key={index} >
                     <Link href={`/product/${item.id}`}>

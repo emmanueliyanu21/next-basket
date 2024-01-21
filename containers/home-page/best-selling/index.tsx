@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, Box, Container } from '@mui/material';
+import { Button, Box, Container, CircularProgress } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import HeaderContent from '../header-content'
 import ProductCard from '@/components/ProductCard';
 import { bestSellingData } from '@/containers/static-data';
-// import Button from '@/components/Shared/Button'
-import { ProductCardProps, HeaderProps } from '../../../types/Home'
+import { HeaderProps } from '../../../types/Home'
 import { RootState } from '@/store/store';
 import { fetchProducts } from '@/services/product/apiService';
 import { PaginationProps } from '@/types/Product';
@@ -49,13 +48,16 @@ const BestSelling: React.FC<HeaderProps> = () => {
     return (
         <Container>
             <HeaderContent data={bestSellingData.dataHeader} />
-            <Box className="max-h-[600px] overflow-hidden h-full overflow-y-auto mt-10">
+            <Box className=" mt-10">
                 <ProductCard data={products} />
             </Box>
-            {loading ? "loading" : showLoadMore ? <Box className="py-8 flex  flex-col items-center p-15 pb-40 gap-10">
-            <Button
-                className={`border border-solid border-secondary shadow-none text-secondary py-8 px-40 font-bolder text-sm font-montserrat bg-transparent hover:bg-secondary hover:text-white`}
-                onClick={loadMore}>Load More</Button>
+            {loading ? <Box className="mt-12" sx={{ display: 'flex', justifyContent: 'center', color: 'secondary' }}>
+                <CircularProgress />
+            </Box> : showLoadMore ? <Box className="py-8 flex mt-12  flex-col items-center p-15  gap-10">
+                <Button
+                    style={{ maxWidth: "300px", width: "100%", height: "60px" }}
+                    className={`border border-solid border-secondary mx-auto  shadow-none text-secondary font-bolder text-sm font-montserrat bg-transparent hover:bg-secondary hover:text-white`}
+                    onClick={loadMore}>LOAD MORE PRODUCTS</Button>
             </Box> : ""}
         </Container>
     )

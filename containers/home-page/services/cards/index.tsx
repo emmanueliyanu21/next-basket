@@ -14,7 +14,7 @@ const Cards = ({data}: ServiceItemProps ) => {
                     </Box>
                     <Typography className="text-center font-Montserrat text-2xl font-bold leading-8 text-black mb-2">{item.name}</Typography>
                     <Box display="flex" justifyContent="center">
-                        <Typography className="text-center font-regular text-grey leading-5 font-montserrat  text-small" maxWidth={200} variant='body2'>{item.description}</Typography>
+                        <Typography className="text-center font-regular text-grey leading-5 font-montserrat tracking-wider  text-small" maxWidth={200} variant='body2'>{item.description}</Typography>
                     </Box>
                 </Box>
             ))}

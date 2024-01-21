@@ -13,6 +13,7 @@ import { SingleProduct } from '@/types/Product';
 
 import { addToCart, openCartModal } from '../../../../redux/action/cart.action';
 import Snackbar from '@/components/Snackbar';
+import { addToWish, openWishModal } from '@/redux/action/wish.action';
 
 type ProductDetailProps = {
     data: SingleProduct;
@@ -27,6 +28,12 @@ const ImageDetails: React.FC<ProductDetailProps> = ({ data }) => {
         dispatch(openCartModal());
         setSnackbarOpen(true);
     };
+
+    const handleAddToWish = () => {
+        dispatch(addToWish(data));
+        dispatch(openWishModal());
+        setSnackbarOpen(true);
+    }
 
     const buttonInfo = {
         value: 'Select Options',
@@ -64,9 +71,9 @@ const ImageDetails: React.FC<ProductDetailProps> = ({ data }) => {
             <Box className="xs:flex flex-wrap" display="flex" gap={2} justifyContent="start" alignContent="center">
                 <Button data={buttonInfo} />
                 <Box className="pt-1" display="flex" gap={2} justifyContent="start" alignContent="center">
-                    <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><FavoriteIcon /></Box>
+                    <Box onClick={handleAddToWish} className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><FavoriteIcon /></Box>
                     <Box onClick={handleAddToCart} className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
-                    <Box className="rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><VisibilityIcon /></Box>
+                    <Box className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><VisibilityIcon /></Box>
                 </Box>
             </Box>
         </Box>
