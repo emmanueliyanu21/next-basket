@@ -48,9 +48,10 @@ export type FeaturedCardProps = {
 
 export interface HeaderContentProps {
     data: {
-        header: string
+        header?: string
         caption: string
-        detail: string
+        detail?: string
+        isvisible?: boolean
     }
 }
 

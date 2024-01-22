@@ -44,7 +44,6 @@ const Navbar = () => {
         setIsVisible(true)
     }
     const handleWishList = () => {
-        console.log('i was touched');
         dispatch(openWishModal());
     }
 

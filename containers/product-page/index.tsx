@@ -26,7 +26,7 @@ const ProductPage = () => {
     const pathname = usePathname()
     const isProductPage = pathname.split('/')[1];
     const { singleProduct } = useSelector((state: RootState) => state.product);
-
+    
     return (
         <>
             <Box className={`${isProductPage ? 'xl:px-48' : ''} mt-20`}>
@@ -36,7 +36,7 @@ const ProductPage = () => {
                     <TabsPanel data={description} />
                 </Box>
                 <Box className="bg-lightWhite">
-                    <BestSelling dataHeader={bestSellingData.dataHeader} />
+                    <BestSelling page={isProductPage} dataHeader={bestSellingData.dataHeader}  />
                     <Box className={`${isProductPage ? 'lg:px-48' : ''}`}>
                         <FeaturedCompany data={featuredCompany} />
                     </Box>

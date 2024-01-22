@@ -19,7 +19,7 @@ const bestSellingData = {
     dataHeader: {
         header: 'Featured Products',
         caption: 'BESTSELLER PRODUCTS',
-        detail: 'Problems trying to resolve the conflict between '
+        detail: 'Problems trying to resolve the conflict between ',
     }
 }
 

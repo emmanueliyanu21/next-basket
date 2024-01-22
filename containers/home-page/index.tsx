@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <>
       <HeroGrid />
-      <BestSelling dataHeader={bestSellingData.dataHeader} />
+      <BestSelling page={'home'} dataHeader={bestSellingData.dataHeader} />
       <Services data={serviceData.data} dataHeader={serviceData.dataHeader} />
       <FeaturedPost data={featurePost.topContent} cards={featurePost.cards} />
       <Testimonials data={testimonialData} />
