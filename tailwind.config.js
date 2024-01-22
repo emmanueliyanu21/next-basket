@@ -57,6 +57,10 @@ module.exports = {
       // },
     },
   },
-  plugins: [],
+  plugins: [
+    require('cssnano')({
+      preset: 'default',
+    }),
+  ],
 }
 
