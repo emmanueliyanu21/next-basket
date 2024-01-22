@@ -9,18 +9,15 @@ interface SnackbarProps {
 }
 
 const Snackbar: React.FC<SnackbarProps> = ({ open, message, close }) => {
-  // console.log(isSnackbar, 'isSnackbar');
-  // const [open, setOpen] = useState(isSnackbar);
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     <MuiSnackbar
       open={open}
       autoHideDuration={3000} 
       onClose={() => close()}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
     >
       <MuiAlert
         elevation={6}

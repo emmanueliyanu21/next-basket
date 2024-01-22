@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Modal, Typography, Button, IconButton } from '@mui/material';
-import { incrementQuantity, decrementQuantity, removeItem, saveCartToLocalStorage } from '../../../redux/action/cart.action';
-import { formatPrice } from '../../../libs/util';
+import { Box, Typography, Button, IconButton } from '@mui/material';
+import { incrementQuantity, decrementQuantity, removeItem } from '../../../redux/action/cart.action';
+import { findProductById, formatPrice, saveCartToLocalStorage } from '../../../libs/util';
 import { RootState } from '../../../store/store';
 import { Delete } from '@mui/icons-material';
 import { CartItem } from '@/types/Cart';
@@ -18,14 +17,26 @@ const CartItem = ({ item }: intems) => {
 
   const handleIncrement = (productId: number) => {
     dispatch(incrementQuantity(productId));
+    const updatedProduct = findProductById(cart.items, productId);
+    if (updatedProduct) {
+      saveCartToLocalStorage([...cart.items]); 
+    }
   };
 
   const handleDecrement = (productId: number) => {
     dispatch(decrementQuantity(productId));
+    const updatedProduct = findProductById(cart.items, productId);
+    if (updatedProduct) {
+      saveCartToLocalStorage([...cart.items]);
+    }
   };
 
   const deleteItem = (productId: number) => {
     dispatch(removeItem(productId))
+    const updatedProduct = findProductById(cart.items, productId);
+    if (updatedProduct) {
+      saveCartToLocalStorage([...cart.items]);
+    }
   }
 
   return (
