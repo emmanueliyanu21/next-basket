@@ -8,18 +8,22 @@ import PhoneIcon from '@mui/icons-material/Phone';
 const socialMediaLinks = [
     {
       name: 'Instagram',
+      url: "#",
       icon: <InstagramIcon fontSize="small" />,
     },
     {
       name: 'Facebook',
+      url: "#",
       icon: <FacebookIcon fontSize="small" />,
     },
     {
       name: 'Twitter',
+      url: "#",
       icon: <TwitterIcon fontSize="small" />,
     },
     {
       name: 'YouTube',
+      url: "#",
       icon: <YouTubeIcon fontSize="small" />,
     },
   ];

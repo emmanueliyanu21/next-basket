@@ -25,7 +25,7 @@ const ProductPage = () => {
     
     return (
         <>
-            <Box className={`${isProductPage ? 'xl:px-48' : ''} m-4 xl:mt-20`}>
+            <Box className={`${isProductPage ? 'xl:px-48' : ''} my-4 xl:mt-18`}>
                 <Breadcrumb breadcrumbs={breadcrumb} />
                 <Box>
                     <ProductDetail />

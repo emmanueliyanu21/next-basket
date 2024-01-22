@@ -3,6 +3,9 @@ import {Box, Container, Tabs, Tab} from '@mui/material';
 import Description from './description/index';
 import { TabPanelProps, SingleProduct } from '@/types/Product';
 
+type ProductTabsPanelProp = {
+  content: SingleProduct;
+}
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -30,7 +33,7 @@ function a11yProps(index: number) {
   };
 }
 
-const TabsPanel = ({ content }: {content: SingleProduct}) => {
+const TabsPanel = ({ content }: ProductTabsPanelProp) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {

@@ -40,10 +40,11 @@ const Description = ({ data }: { data: SingleProduct }) => {
           <Skeleton variant="rectangular" height="400px" width="400px" />
         </Box>
         :
-        <Image src={data.thumbnail} alt="image" sizes='100vw' width={0} height={0} style={{
+        <Image className='sm:min-w-[250px] xl:min-w-[400px]' src={data.thumbnail} alt="image" sizes='100vw' width={0} height={0} style={{
           maxWidth: "800px",
           width: "100%",
           maxHeight: "500px",
+          minHeight: "400px",
           height: "100%",
           objectFit: "cover",
           overflow: "hidden",

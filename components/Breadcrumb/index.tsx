@@ -7,7 +7,7 @@ import { ChevronRight } from '@mui/icons-material';
 
 const Breadcrumb = ({ breadcrumbs }: BreadCrumbProps) => {
   return (
-    <Breadcrumbs className='ml-4' aria-label="breadcrumb" separator={<ChevronRight style={{color: "#BDBDBD", fontSize: "35px"}}/>}>
+    <Breadcrumbs className='ml-2' aria-label="breadcrumb" separator={<ChevronRight style={{color: "#BDBDBD", fontSize: "35px"}}/>}>
       {breadcrumbs.map(({ path, title }, index) => (
        <div key={index} className="capitalize font-Montserrat font-semibold">
          {path ? <Link href={path}><Typography className="text-black" key={index} color="textPrimary">

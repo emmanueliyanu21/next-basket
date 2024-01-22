@@ -20,8 +20,8 @@ const ProductDetail = () => {
     const { singleProduct, loading } = useSelector((state: RootState) => state.product);
 
     return (
-      <Box>
-          <Container className='mb-24 mt-5'>
+      <>
+          <Box className='mb-24 mt-5'>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>
@@ -34,9 +34,9 @@ const ProductDetail = () => {
                     </Item>
                 </Grid>
             </Grid>
-        </Container>
-        <TabsPanel content={singleProduct} />
-      </Box>
+        </Box>
+        <TabsPanel content={singleProduct}/>
+      </>
     )
 }
 

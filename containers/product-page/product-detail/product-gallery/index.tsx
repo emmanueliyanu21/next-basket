@@ -55,7 +55,7 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
             </Box>
 
             <Box display="flex" justifyContent="flex-start" gap={2} className="sm:w-500 xs:w:300 overflow-hidden h-full overflow-x-auto mt-2 ml-4">
-                {images.length ? images.map((item, index) => (
+                {images.length && !loading ? images.map((item, index) => (
                     <Image
                         key={index}
                         src={item}

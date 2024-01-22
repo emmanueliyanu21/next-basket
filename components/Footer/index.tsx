@@ -10,6 +10,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Data, GetInTouch, ListData } from '@/types/FooterNav';
+import Link from 'next/link';
 
 const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action, caption }) => (
     <Box className="my-16">
@@ -46,7 +47,7 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
                         style={{ width: '100px', height: 'auto' }} className="mr-10" />
                     <Box display="flex" gap={2}>
                         {data.header.icons.map((icon, index) => (
-                            <React.Fragment key={index}>{icon.icon}</React.Fragment>
+                            <Link href={"#"} key={index}>{icon.icon}</Link>
                         ))}
                     </Box>
                 </Box>
