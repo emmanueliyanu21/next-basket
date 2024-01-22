@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'
-// import { RootState } from '../../store/store';
 import { usePathname } from 'next/navigation'
 import { bestSellingData, description, featuredCompany, productCard } from '../static-data'
 import BestSelling from '../home-page/best-selling'
@@ -9,7 +8,6 @@ import Box from '@mui/material/Box';
 import FeaturedCompany from './featured-company'
 import ProductDetail from './product-detail';
 import TabsPanel from './tabs-panel';
-// import { useSelector } from 'react-redux';
 import Breadcrumb from '@/components/Breadcrumb';
 
 const breadcrumb = [

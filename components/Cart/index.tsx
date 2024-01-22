@@ -35,12 +35,17 @@ const CartModal = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             onClose={handleClose}
+            sx={{
+                maxWidth: "610px",
+                width: "95%",
+                margin: "auto"
+            }}
         >
             <Fade in={cartItems.isCartModalOpen}>
                 <Box
                     className="bg-white p-4 rounded-md"
                     sx={{
-                        width: 600,
+                        width: "100%",
                         position: 'absolute',
                         top: '50%',
                         left: '50%',

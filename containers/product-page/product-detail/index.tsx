@@ -1,14 +1,9 @@
 import React from 'react'
 import ProductDescription from './product-description';
-import ProductImage from './product-image';
-import { SingleProduct } from '@/types/Product';
+import ProductGallery from './product-gallery'
 import { Paper, Container, Grid, styled } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-
-// type ProductDetailProps = {
-//     data: SingleProduct;
-// }
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -27,7 +22,7 @@ const ProductDetail = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>
-                        <ProductImage images={singleProduct.images} title={singleProduct.title} loading={loading}/>
+                        <ProductGallery images={singleProduct.images} title={singleProduct.title} loading={loading}/>
                     </Item>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>

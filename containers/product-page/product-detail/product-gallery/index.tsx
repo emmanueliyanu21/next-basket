@@ -5,7 +5,6 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Skeleton from '@mui/material/Skeleton';
-import { SingleProduct } from '@/types/Product';
 import { isMediaSize, smallScreenSize, smallerScreenSize } from '@/libs/constants'
 
 type ProductDetailProps = {
@@ -14,7 +13,7 @@ type ProductDetailProps = {
     loading: boolean
 }
 
-const ImageGallery: React.FC<ProductDetailProps> = ({ images, title, loading }) => {
+const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handlePrevImage = () => {
@@ -77,4 +76,4 @@ const ImageGallery: React.FC<ProductDetailProps> = ({ images, title, loading }) 
     );
 };
 
-export default ImageGallery;
+export default ProductGallery;

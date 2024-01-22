@@ -7,7 +7,7 @@ import { Close } from '@mui/icons-material';
 import { closeWishModal } from '@/redux/action/wish.action';
 import WishListItem from './WishListItem';
 
-const CartModal = () => {
+const WishListModal = () => {
     const dispatch = useDispatch();
     const wishLists = useSelector((state: RootState) => state.wishList);
     const handleClose = () => {
@@ -35,6 +35,11 @@ const CartModal = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             onClose={handleClose}
+            sx={{
+                maxWidth: "610px",
+                width: "95%",
+                margin: "auto"
+            }}
         >
             <Fade in={wishLists.isWishModalOpen}>
                 <Box
@@ -90,4 +95,4 @@ const CartModal = () => {
     );
 };
 
-export default CartModal;
+export default WishListModal;
