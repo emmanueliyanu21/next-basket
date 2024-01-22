@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Typography, Box, CircularProgress} from '@mui/material';
 import {  formatPrice } from '@/libs/util';
 import StarRating from '@/components/Shared/Rating';
@@ -9,7 +9,6 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
 import { SingleProduct } from '@/types/Product';
-import { RootState } from '@/store/store';
 import { addToCart, openCartModal } from '@/redux/action/cart.action';
 import Snackbar from '@/components/Snackbar';
 import { addToWish, openWishModal } from '@/redux/action/wish.action';
@@ -47,7 +46,7 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
 
     return (
 
-        <Box display="block" className="pt-2 pl-8">
+        <Box style={{maxWidth: "600px", margin: "auto", width: "100%"}} display="block" className="pt-2 pl-8">
             {loading || !data.brand ? <Box height={"300px"} alignItems={"center"} className="mt-12" sx={{ display: 'flex', justifyContent: 'center'}}>
                 <CircularProgress />
             </Box>

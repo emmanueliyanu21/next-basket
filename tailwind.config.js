@@ -1,4 +1,4 @@
-import montserrat from "./libs/fonts"
+
 // fontFamily: montserrat.style.fontFamily,
 /** @type {import('tailwindcss').Config} */
 module.exports = {

@@ -23,39 +23,39 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
     const handleNextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
     };
-    
-    const [sm, md] = [isMediaSize(smallerScreenSize), isMediaSize(smallScreenSize) ]
+
+    const [sm, md] = [isMediaSize(smallerScreenSize), isMediaSize(smallScreenSize)]
     const imageWidth = sm ? 250 : md ? 350 : 500;
 
     return (
-        <Box>
-            <Box  className="relative max-w-lg w-100 p-4 mb-4 rounded-md bg-white" height={"500px"}>
-                {!loading && images && images[currentImageIndex] ? 
-                <Box display="flex" height={"100%"} width={"100%"}>
-                    <IconButton onClick={handlePrevImage} style={{position: "absolute", top: "50%"}}>
-                        <ChevronLeftIcon fontSize='large' style={{color: "white", fontSize: "50px"}} />
-                    </IconButton>
-                    <Image
-                    src={images[currentImageIndex]}
-                    alt={title}
-                    width={imageWidth} height={imageWidth}
-                    style={{
-                        width: '100%', height: '100%',
-                         objectFit: 'cover',
-                    }}
-                    priority={true}
-                />
-                   <IconButton onClick={handleNextImage} style={{position: "absolute", top: "50%", right: "10px"}}>
-                        <ChevronRightIcon fontSize='large' style={{color: "white", fontSize: "50px"}} />
-                    </IconButton>
-                </Box>
+        <Box className="flex lg:block" justifyContent={"center"} flexDirection={"column"} alignItems={"center"}>
+            <Box className="relative max-w-lg w-100 p-4 mb-4 rounded-md bg-white" height={"500px"}>
+                {!loading && images && images[currentImageIndex] ?
+                    <Box display="flex" height={"100%"} width={"100%"}>
+                        <IconButton onClick={handlePrevImage} style={{ position: "absolute", top: "50%" }}>
+                            <ChevronLeftIcon fontSize='large' style={{ color: "white", fontSize: "50px" }} />
+                        </IconButton>
+                        <Image
+                            src={images[currentImageIndex]}
+                            alt={title}
+                            width={imageWidth} height={imageWidth}
+                            style={{
+                                width: '100%', height: '100%',
+                                objectFit: 'cover', objectPosition: "top"
+                            }}
+                            priority={true}
+                        />
+                        <IconButton onClick={handleNextImage} style={{ position: "absolute", top: "50%", right: "10px" }}>
+                            <ChevronRightIcon fontSize='large' style={{ color: "white", fontSize: "50px" }} />
+                        </IconButton>
+                    </Box>
                     :
-                    <Skeleton variant="rectangular" width={"100%"} height={"100%"} animation="wave" />
+                    <Skeleton variant="rectangular" width={500} height={450} animation="wave" />
                 }
             </Box>
 
-            <Box display="flex" justifyContent="flex-start" gap={2} className="sm:w-500 xs:w:300 overflow-hidden h-full overflow-x-auto mt-2">
-                {images.map((item, index) => (
+            <Box display="flex" justifyContent="flex-start" gap={2} className="sm:w-500 xs:w:300 overflow-hidden h-full overflow-x-auto mt-2 ml-4">
+                {images.length ? images.map((item, index) => (
                     <Image
                         key={index}
                         src={item}
@@ -63,14 +63,21 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
                         width="0" height="0"
                         sizes="100vw"
                         style={{
-                            width: '100px', height: '100px', cursor: 'pointer', objectFit: 'cover',
+                            width: '100px', height: '100px', cursor: 'pointer', objectFit: 'cover', objectPosition: "top"
                         }}
                         priority={true}
                         onClick={() => {
                             setCurrentImageIndex(index);
                         }}
                     />
-                ))}
+                ))
+                    :
+                    <Box display={"flex"} gap={"10px"} justifyContent={"flex-start"}>
+                        <Skeleton variant="rectangular" width={100} height={100} animation="wave" />
+                        <Skeleton variant="rectangular" width={100} height={100} animation="wave" />
+                        <Skeleton variant="rectangular" width={100} height={100} animation="wave" />
+                    </Box>
+                }
             </Box>
         </Box>
     );

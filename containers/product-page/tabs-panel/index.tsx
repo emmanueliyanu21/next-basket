@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Box, Container, Tabs, Tab} from '@mui/material';
 import Description from './description/index';
-import { TabPanelProps, DescriptionProps } from '@/types/Product';
+import { TabPanelProps, SingleProduct } from '@/types/Product';
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -30,7 +30,7 @@ function a11yProps(index: number) {
   };
 }
 
-const TabsPanel = ({ data }: DescriptionProps) => {
+const TabsPanel = ({ content }: {content: SingleProduct}) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -38,7 +38,7 @@ const TabsPanel = ({ data }: DescriptionProps) => {
   };
 
   const tabsData = [
-    { label: 'Description', content: <Description data={data} /> },
+    { label: 'Description', content: <Description data={content} /> },
     { label: 'Additional Description', content: 'Additional Item' },
     { label: `Review(0)`, content: 'Review' },
   ];

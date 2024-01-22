@@ -2,12 +2,11 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import { bestSellingData, description, featuredCompany, productCard } from '../static-data'
+import { bestSellingData, featuredCompany } from '../static-data'
 import BestSelling from '../home-page/best-selling'
 import Box from '@mui/material/Box';
 import FeaturedCompany from './featured-company'
 import ProductDetail from './product-detail';
-import TabsPanel from './tabs-panel';
 import Breadcrumb from '@/components/Breadcrumb';
 
 const breadcrumb = [
@@ -30,7 +29,6 @@ const ProductPage = () => {
                 <Breadcrumb breadcrumbs={breadcrumb} />
                 <Box>
                     <ProductDetail />
-                    <TabsPanel data={description} />
                 </Box>
                 <Box className="bg-lightWhite">
                     <BestSelling page={isProductPage} dataHeader={bestSellingData.dataHeader}  />

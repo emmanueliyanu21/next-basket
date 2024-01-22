@@ -12,10 +12,10 @@ function Header() {
   const isProductPage = pathname.split('/')[1];
   return (
     <Container maxWidth="xl" className={`${isProductPage ? 'xl:px-48' : ''} py-2 bg-primary text-white font-Montserrat`}>
-      <Box className="flex justify-between">
-        <Box className="flex items-center gap-4">
+      <Box className="flex justify-between flex-wrap  lg:flex-nowrap">
+        <Box className="flex items-center xl:gap-4 flex-wrap  lg:flex-nowrap">
           {contactInfo.map((info, index) => (
-            <Box key={index} className={`flex items-center p-2 ${index === 1 ? 'hidden md:flex' : ''}`}>
+            <Box key={index} className={`flex items-center p-2`}>
               {info.icon}
               <Typography variant="body2" className="ml-1 font-semibold tracking-wider">
                 {info.text}
@@ -23,7 +23,7 @@ function Header() {
             </Box>
           ))}
         </Box>
-        <Box className="hidden lg:flex items-center p-2">
+        <Box className="md:hidden xl:flex items-center p-2">
           <Typography variant="body2" className="ml-1 font-semibold tracking-wider">
             Follow Us and get a chance to win 80% off
           </Typography>
