@@ -41,7 +41,7 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
                     width={imageWidth} height={imageWidth}
                     style={{
                         width: '100%', height: '100%',
-                         objectFit: 'contain',
+                         objectFit: 'cover',
                     }}
                     priority={true}
                 />
