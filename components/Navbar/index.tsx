@@ -41,7 +41,7 @@ const Navbar = () => {
     }
 
     const handleMobile = () => {
-        setIsVisible(true)
+        setIsVisible(!isVisible)
     }
     const handleWishList = () => {
         dispatch(openWishModal());
@@ -110,7 +110,7 @@ const Navbar = () => {
                             })}
                 </Box>
             </Box>
-            {isVisible ? <MobileNavbar data={data} /> : ''}
+            {isVisible ? <MobileNavbar data={data} handleClose={handleMobile}/> : ''}
         </Container>
     )
 }

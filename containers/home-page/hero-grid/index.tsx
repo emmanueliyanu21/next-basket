@@ -36,7 +36,7 @@ const HeroGrid = () => {
             <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} variant={'h3'} />
           </Item>
         </Grid>
-        <Grid item xs={12} sm={6} md={7} className='font-'>
+        <Grid item xs={12} sm={6} md={7}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Item className='relative '>
@@ -45,13 +45,13 @@ const HeroGrid = () => {
               </Item>
             </Grid>
             <Grid container spacing={0} className='mt-4 ml-4 '>
-              <Grid item xs={12} sm={6} className='mr-[-10px]' >
+              <Grid item xs={12} sm={6} className='mr-[-10px] mb-4' >
                 <Item className='relative '>
                   <Image src={Image3} width={331} height={300} alt="Bandage" />
                   <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
                 </Item>
               </Grid>
-              <Grid item xs={12} sm={6} className=''>
+              <Grid item xs={12} sm={6} className='mb-4'>
                 <Item className='relative '>
                   <Image src={Image4} width={331} height={300} alt="Bandage" />
                   <ItemContent itemCount={data.itemCount} category={data.category} readMore={data.readMore} />
