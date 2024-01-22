@@ -5,8 +5,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import { BreadCrumbProps } from '@/types/BreadCrumbProps';
 import { ChevronRight } from '@mui/icons-material';
 
-// const value = ['Home', 'Shoes']
-// 
 const Breadcrumb = ({ breadcrumbs }: BreadCrumbProps) => {
   return (
     <Breadcrumbs className='ml-4' aria-label="breadcrumb" separator={<ChevronRight style={{color: "#BDBDBD", fontSize: "35px"}}/>}>
