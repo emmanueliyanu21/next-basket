@@ -1,3 +1,5 @@
+import montserrat from "./libs/fonts"
+// fontFamily: montserrat.style.fontFamily,
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   important: true,
@@ -37,7 +39,7 @@ module.exports = {
         lightGreen: '#2DC071'
       },
       fontFamily: {
-        montserrat: ['Montserrat', 'sans-serif'],
+        montserrat: ['var(--font-montserrat)'],
       },
       fontWeight: {
         light: 300,

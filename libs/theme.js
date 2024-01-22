@@ -1,8 +1,9 @@
 import { createTheme } from '@mui/material/styles';
+import montserrat from "./fonts"
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Montserrat, sans-serif',
+    fontFamily: montserrat.style.fontFamily,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,

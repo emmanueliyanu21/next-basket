@@ -7,7 +7,7 @@ import { HeaderProps, ServiceItemProps } from '@/types/Home';
 const Services: React.FC<ServiceItemProps & HeaderProps> =  ({ data, dataHeader}) => {
     return (
         <Container className='my-36 pb-8'>
-            <HeaderContent data={dataHeader} />
+            <HeaderContent content={dataHeader} />
             <Box className='my-16'>
                 <Cards data={data} />
             </Box>

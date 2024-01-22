@@ -1,5 +1,6 @@
-export type ProductCardProps = {
+export type ProductListProps = {
     data: Product[],
+    limit?: number
 }
 
 export type Product = {

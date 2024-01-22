@@ -47,7 +47,23 @@ const TabsPanel = ({ data }: DescriptionProps) => {
     <Container>
       <Box className="pb-20s">
         <Box className="mb-12" display="flex" justifyContent="center" sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs className="overflow-x-auto" value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tabs
+            sx={{
+              '& .MuiTabs-flexContainer': {
+                paddingBottom: "15px"
+              },
+              '& .MuiTabs-indicator': {
+                display: 'none',
+              },
+              '& .MuiButtonBase-root':{
+                fontWeight: "900",
+                color: "#737373",
+              },
+              '& .Mui-selected': {
+                fontWeight: "400"
+              }
+            }}
+          className="overflow-x-auto font-montserrat" value={value} onChange={handleChange} aria-label="basic tabs example">
             {tabsData.map((tab, index) => (
               <Tab className='sm:w-500 xs:w-300 overflow-hidden' key={index} label={tab.label} {...a11yProps(index)} />
             ))}

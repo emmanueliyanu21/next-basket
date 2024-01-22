@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Typography } from '@mui/material';
 import { formatPrice } from '../../libs/util'
-import { ProductCardProps } from '../../types/Product'
+import { ProductListProps } from '../../types/Product'
 
-const ProductCard = ({ data }: ProductCardProps) => {
+const ProductList = ({ data, limit }: ProductListProps) => {
+    const products = limit ? data.slice(0, limit) : data
     return (
         <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={2}>
-            {data.map((item, index) => (
+            {products.map((item, index) => (
                 <Box key={index} >
                     <Link href={`/product/${item.id}`}>
                         <Box display="flex" justifyContent="center" height={250}>
@@ -20,7 +21,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
                                 height="0"
                                 sizes="100vw"
                                 style={{
-                                    width: '100%', height: 'auto',
+                                    width: '100%', height: '100%',
                                     minWidth: '183px',
                                     maxWidth: '183px',
                                     minHeight: '238px',
@@ -43,4 +44,4 @@ const ProductCard = ({ data }: ProductCardProps) => {
     )
 }
 
-export default ProductCard
+export default ProductList

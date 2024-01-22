@@ -76,7 +76,7 @@ const Navbar = () => {
                         {data.menuItems.map((item, index) => (
                             <MenuItem key={index} onClick={handleClose} className='px-1' >
                                 <Link href={`/${item.url}`}>
-                                    <Typography className="text-grey font-montserrat font-semibold leading-6 tracking-wide" variant="body2">
+                                    <Typography className="text-grey font-montserrat font-bold leading-6 tracking-wide" variant="body2">
                                         {item.name}
                                         {item.name === 'Shop' ? <ExpandMoreIcon /> : ''}
                                     </Typography>

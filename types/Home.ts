@@ -16,23 +16,12 @@ export type FeaturedContentProps = {
 
 export type HeaderProps = {
     dataHeader: {
-        header: string,
+        title: string,
         caption: string,
         detail: string
     }
 }
 
-export type ProductCardProps = {
-    data: {
-        id: number,
-        imageUrl: string;
-        title: string;
-        category: string;
-        discountPercentage: number,
-        price: number,
-        images: string[]
-    }[],
-}
 
 export type FeaturedCardProps = {
     cards: {

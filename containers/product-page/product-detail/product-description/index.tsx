@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, CircularProgress} from '@mui/material';
 import {  formatPrice } from '@/libs/util';
 import StarRating from '@/components/Shared/Rating';
 import Button from '@/components/Shared/Button'
@@ -16,12 +16,13 @@ import { addToWish, openWishModal } from '@/redux/action/wish.action';
 
 type ProductDetailProps = {
     data: SingleProduct;
+    loading: boolean;
 }
 const snacksData = {
     cart: "Items added to cart!",
     wishlist: "Items added to wishlist!"
 }
-const ProductDescription: React.FC<ProductDetailProps> = ({ data }) => {
+const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => {
     const [isVisible, setSnackbarOpen] = useState(false);
     const [snackMessage, setSnackbarMessage] = useState("");
 
@@ -47,7 +48,12 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data }) => {
     return (
 
         <Box display="block" className="pt-2 pl-8">
-
+            {loading || !data.brand ? <Box height={"300px"} alignItems={"center"} className="mt-12" sx={{ display: 'flex', justifyContent: 'center'}}>
+                <CircularProgress />
+            </Box>
+            :
+            
+        <>
             <Snackbar open={isVisible} close={() => setSnackbarOpen(false)} message={snackMessage} />
             <Typography className="py-4 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
                 {data.brand}
@@ -80,7 +86,10 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data }) => {
                     <Box onClick={handleAddToCart} className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><ShoppingCartIcon /></Box>
                     <Box className="cursor-pointer hover:bg-gray-100 hover:border-gray-400 transition duration-300 ease-in-out rounded-full border-2 border-gray-300 bg-white flex w-4 h-4 p-5 justify-center items-center"><VisibilityIcon /></Box>
                 </Box>
+                
             </Box>
+            </>
+            }
         </Box>
     )
 }

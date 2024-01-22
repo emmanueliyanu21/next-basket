@@ -9,7 +9,7 @@ const serviceData = {
         { imageUrl: '/icons/bx_bxs-book-reader.png', name: 'Hack Growth', description: 'Overcame any hurdle or any other problem.' },
     ],
     dataHeader: {
-        header: 'Featured Products',
+        title: 'Featured Products',
         caption: 'THE BEST SERVICES',
         detail: 'Problems trying to resolve the conflict between '
     }
@@ -17,7 +17,7 @@ const serviceData = {
 
 const bestSellingData = {
     dataHeader: {
-        header: 'Featured Products',
+        title: 'Featured Products',
         caption: 'BESTSELLER PRODUCTS',
         detail: 'Problems trying to resolve the conflict between ',
     }
