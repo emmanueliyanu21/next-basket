@@ -1,25 +1,19 @@
 import React from 'react'
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import {Box, Button, Container, TextField, Typography, List, ListItem, ListItemButton} from '@mui/material';
 import Image from 'next/image';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import { Data, GetInTouch, ListData } from '@/types/FooterNav';
 import Link from 'next/link';
 
 const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action, caption }) => (
     <Box className="my-16">
-        <Typography className="text-black text-Montserrat text-base font-bold leading-6 tracking-tighter">{name}</Typography>
+        <Typography className="text-black text-Montserrat text-base font-bolder leading-6 tracking-tighter">{name}</Typography>
         {list ? <List>
             {list?.map((item, index) => (
-                <ListItem disablePadding key={index}>
-                    <ListItemButton className="mb-0 pb-0 pl-0">
-                        <ListItemText className="mb-0 pb-0 text-grey font-montserrat text-base font-bold leading-6 tracking-wide" primary={item} />
+                <ListItem disablePadding key={index} className='font-black'>
+                    <ListItemButton className="mb-0 pb-1 pl-0 font-black">
+                    <Typography className='text-grey font-Montserrat text-sm leading-6 tracking-wide' component="span" fontWeight={600}>
+                {item}
+            </Typography>
                     </ListItemButton>
                 </ListItem>
             ))}
@@ -27,7 +21,7 @@ const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action
             <Box>
                 <Box className="mt-6" width={"100%"} height={"70px"}>
                     <TextField style={{ width: "60%", height: "60px", borderRadius: "2px" }} className='bg-lightWhite border-none' id="outlined-basic" label={text} variant="outlined" />
-                    <Button style={{ width: "40%", height: "56px", marginLeft: "-15px", borderRadius: "2px" }} size='large' className='py-4 border-none bg-secondary text-white shadow-none' variant="contained">{action}</Button>
+                    <Button style={{ width: "40%", height: "56px", marginLeft: "-15px", borderRadius: "2px" }} size='large' className='py-4 border-none bg-secondary text-white shadow-none capitalize' variant="contained">{action}</Button>
                 </Box>
                 <Typography className='font-light text-xs pt-2 text-grey '>{caption}</Typography>
             </Box>
@@ -45,7 +39,7 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
                         height="0"
                         sizes="100vw"
                         style={{ width: '100px', height: 'auto' }} className="mr-10" />
-                    <Box display="flex" gap={2}>
+                    <Box display="flex" gap={2} className="lg:mr-16">
                         {data.header.icons.map((icon, index) => (
                             <Link href={"#"} key={index}>{icon.icon}</Link>
                         ))}

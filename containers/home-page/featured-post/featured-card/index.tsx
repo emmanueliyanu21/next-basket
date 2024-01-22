@@ -6,18 +6,22 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { FeaturedCardProps } from '@/types/Home';
+import BadgeTag from '@/components/Shared/Badge';
 
 const FeaturedCards = ({ cards }: FeaturedCardProps) => {
     return (
         <Box flexWrap="wrap" display="flex" justifyContent="center" gap={3}>
             {cards.map((product, index) => (
-                <Box maxWidth={348} className="bg-white shadow-md pb-8" key={index} >
+                <Box maxWidth={348} className="relative bg-white shadow-md pb-8" key={index} >
                     <Image src={product.image} alt={product.title} width="0"
                   height="0"
                   sizes="100vw"
                   style={{
                     width: '348px', height: 'auto',
                   }} />
+                  <Box className="absolute top-5 left-5">
+                    <BadgeTag />
+                  </Box>
                     <Box className="px-6 py-2">
                         <Box className="text-grey my-4" display="flex" gap={3}>
                             {product.headers.map((tag, index) => (

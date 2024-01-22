@@ -36,7 +36,8 @@ module.exports = {
         grey: '#737373',
         lightGrey: '#BDBDBD',
         lightWhite: '#FAFAFA',
-        lightGreen: '#2DC071'
+        lightGreen: '#2DC071',
+        red: "#E74040"
       },
       fontFamily: {
         montserrat: ['var(--font-montserrat)'],
