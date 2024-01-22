@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: true,
   content: [
     
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -8,6 +9,13 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
     './containers/**/*.{js,ts,jsx,tsx,mdx}'
     
+  ],
+  purge: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./styles/**/*.{css,scss}",
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    "./app/**/*.{js,ts,jsx,tsx}",
+    './containers/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
