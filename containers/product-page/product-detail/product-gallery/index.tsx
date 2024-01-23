@@ -5,7 +5,6 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Skeleton from '@mui/material/Skeleton';
-import { isMediaSize, smallScreenSize, smallerScreenSize } from '@/libs/constants'
 
 type ProductDetailProps = {
     images: string[];
@@ -24,12 +23,9 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
         setCurrentImageIndex((prevIndex) => (prevIndex < images.length - 1 ? prevIndex + 1 : 0));
     };
 
-    const [sm, md] = [isMediaSize(smallerScreenSize), isMediaSize(smallScreenSize)]
-    const imageWidth = sm ? 250 : md ? 350 : 500;
-
     return (
         <Box className="flex lg:block bg-lightWhite" justifyContent={"center"} flexDirection={"column"} alignItems={"center"} overflow={"hidden"} width={"100%"}>
-            <Box className="relative max-w-lg w-100 p-4 mb-4 rounded-md" height={"500px"}>
+            <Box className="relative max-w-lg w-full p-4 mb-4 rounded-md" height={"500px"}>
                 {!loading && images && images[currentImageIndex] ?
                     <Box display="flex" height={"100%"} width={"100%"}>
                         <IconButton onClick={handlePrevImage} style={{ position: "absolute", top: "50%" }}>
