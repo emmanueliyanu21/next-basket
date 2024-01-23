@@ -2,20 +2,21 @@ import React from 'react';
 import { Modal, Fade, Box, Button, Typography, Divider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { formatPrice } from '@/libs/util';
+import { formatPrice, getWishListFromLocalStorage } from '@/libs/util';
 import { Close } from '@mui/icons-material';
 import { closeWishModal } from '@/redux/action/wish.action';
 import WishListItem from './WishListItem';
 
 const WishListModal = () => {
     const dispatch = useDispatch();
-    const wishLists = useSelector((state: RootState) => state.wishList);
+    const {isWishModalOpen} = useSelector((state: RootState) => state.wishList);
+    const wishItems = getWishListFromLocalStorage();
     const handleClose = () => {
         dispatch(closeWishModal());
     }
 
     const getTotalPriceAndQuantity = () => {
-        const result = wishLists.items.reduce(
+        const result = wishItems.reduce(
             (accumulator, item) => {
                 accumulator.totalPrice += item.quantity * item.price;
                 accumulator.totalQuantity += item.quantity;
@@ -31,7 +32,7 @@ const WishListModal = () => {
 
     return (
         <Modal
-            open={wishLists.isWishModalOpen}
+            open={isWishModalOpen}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             onClose={handleClose}
@@ -41,7 +42,7 @@ const WishListModal = () => {
                 margin: "auto"
             }}
         >
-            <Fade in={wishLists.isWishModalOpen}>
+            <Fade in={isWishModalOpen}>
                 <Box
                     className="bg-white p-4 rounded-md"
                     sx={{
@@ -62,7 +63,7 @@ const WishListModal = () => {
                     </Box>
                     {totalQuantity ?
                         <Box className="max-w-md mx-auto">
-                            {wishLists.items.map((item: any) => (
+                            {wishItems.map((item: any) => (
                                 <WishListItem key={item.id} item={item} />
                             ))}
                             <Divider className='my-8' />

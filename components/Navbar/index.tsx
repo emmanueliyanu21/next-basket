@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -12,9 +12,8 @@ import { data } from './static-data'
 import MobileNavbar from './MobileNavbar';
 import { openCartModal } from '../../redux/action/cart.action'
 import { openWishModal } from '../../redux/action/wish.action'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { getCartFromLocalStorage } from '@/libs/util';
+import { useDispatch } from 'react-redux';
+import { getCartFromLocalStorage, getWishListFromLocalStorage } from '@/libs/util';
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -22,7 +21,6 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
-    const wishList = useSelector((state:RootState) => ( state.wishList));
 
     const getCount = (name:String) => {
         if(name === "cart"){
@@ -30,10 +28,11 @@ const Navbar = () => {
             return cart.length
         }
         if (name === "wishlist"){
-            return wishList?.items.length
+            const cart = getWishListFromLocalStorage() || []
+            return cart.length
         }
     }
-    
+
     const handleClose = () => { }
 
     const handleSearch = () => {
@@ -100,14 +99,14 @@ const Navbar = () => {
                         let count = hasCount && getCount(name)
                         return (name !== "wishlist" || !isMobile) && (
                             (name !== "hamburger" || isMobile) && (
-                                <Box position={"relative"}
+                                <Box  position={"relative"}
                                 display={"flex"}
                                     key={index}
                                     className={isMobile ? "text-black cursor-pointer" : "text-secondary cursor-pointer"}
                                     onClick={() => handleIconClick(index)}
                                 >
-                                    <p>{icon}</p> &nbsp;
-                                    <span>{count ? count : ""}</span>
+                                    <span>{icon}</span> &nbsp;
+                                    {count ? <span >{count}</span> : ""}
                                 </Box>
                             )
                         )
@@ -115,7 +114,7 @@ const Navbar = () => {
                    </Box>
                 </Box>
             </Box>
-            {isVisible && isMobile ? <MobileNavbar data={data} handleClose={handleMobile}/> : ''}
+            {isVisible && isMobile  ? <MobileNavbar data={data} handleClose={handleMobile}/> : ''}
         </Container>
     )
 }

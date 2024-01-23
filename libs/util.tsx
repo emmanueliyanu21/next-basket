@@ -1,4 +1,5 @@
 import { CartItem } from "@/types/Cart";
+import { WishItem } from "@/types/WishList";
 export const dataKeys = {
     cart: "next_cart",
     wishList: "next_wishhlist"
@@ -9,18 +10,21 @@ const formatPrice = (price: number) => {
 };
 
 const getCartFromLocalStorage = (): CartItem[] => {
-    if (typeof window !== 'undefined') {
-    const cartData = window.localStorage.getItem(dataKeys.cart);
+    const cartData = window?.localStorage.getItem(dataKeys.cart);
     return cartData ? JSON.parse(cartData) : [];
-    } else {
-        return []
-    }
 };
 
 const saveCartToLocalStorage = (cartItems: CartItem[]) => {
-    if (typeof window !== 'undefined') {
-    window.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
-    } 
+    window?.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
+};
+
+const getWishListFromLocalStorage = (): WishItem[] => {
+    const wishData = window?.localStorage.getItem(dataKeys.wishList);
+    return wishData ? JSON.parse(wishData) : [];
+};
+
+const saveWishListToLocalStorage = (wishItems: WishItem[]) => {
+    window?.localStorage.setItem(dataKeys.wishList, JSON.stringify(wishItems));
 };
 
 const findProductById = (cart: CartItem[], productId: number): CartItem | undefined => {
@@ -58,4 +62,24 @@ const removePrdtFromCart = (productId: number, cart: CartItem[]) => {
     return updatedCart
 }
 
-export { formatPrice, getCartFromLocalStorage, saveCartToLocalStorage, findProductById, updatePrdtQuantityInCart, addPrdtToCart, removePrdtFromCart }
+const removePrdtFromWish = (productId: number, wish: WishItem[]) => {
+    const cartInLs = getWishListFromLocalStorage()
+    const myWish = cartInLs.length ? cartInLs : wish
+    const updatedWish = myWish.filter((item) => item.id !== productId)
+    saveWishListToLocalStorage(updatedWish)
+    return updatedWish
+}
+
+const addPrdtToWishList = (product: WishItem, wish: WishItem[]) => {
+    const cartInLs = getWishListFromLocalStorage()
+    const myWish = cartInLs.length ? cartInLs : wish
+    const existingProduct = myWish.find((item) => item.id === product.id)
+    if (!existingProduct) {
+        let updatedWish = [...myWish, { ...product, quantity: 1 }]
+        saveWishListToLocalStorage(updatedWish)
+        return updatedWish
+    }
+    return wish;
+}
+
+export { formatPrice, getCartFromLocalStorage, saveCartToLocalStorage, findProductById, updatePrdtQuantityInCart, addPrdtToCart, removePrdtFromCart, removePrdtFromWish, addPrdtToWishList, getWishListFromLocalStorage }

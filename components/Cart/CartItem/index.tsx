@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import { incrementQuantity, decrementQuantity, removeItem } from '../../../redux/action/cart.action';
 import { formatPrice } from '../../../libs/util';

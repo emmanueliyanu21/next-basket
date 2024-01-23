@@ -10,15 +10,13 @@ import { getCartFromLocalStorage } from '@/libs/util';
 
 const CartModal = () => {
     const dispatch = useDispatch();
-    const {isCartModalOpen, items} = useSelector((state: RootState) => state.cart);
+    const {isCartModalOpen} = useSelector((state: RootState) => state.cart);
     const cartItems = getCartFromLocalStorage();
     const handleClose = () => {
         dispatch(closeCartModal());
     }
 
     const getTotalPriceAndQuantity = () => {
-        console.log(cartItems, "cartItems");
-        
         const result = cartItems.reduce(
           (accumulator, item) => {
             accumulator.totalPrice += item.quantity * item.price;
