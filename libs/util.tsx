@@ -10,21 +10,37 @@ const formatPrice = (price: number) => {
 };
 
 const getCartFromLocalStorage = (): CartItem[] => {
+    if (typeof window !== "undefined") {
     const cartData = window?.localStorage.getItem(dataKeys.cart);
     return cartData ? JSON.parse(cartData) : [];
+    } else {
+        return []
+    }
 };
 
 const saveCartToLocalStorage = (cartItems: CartItem[]) => {
+    if (typeof window !== "undefined") {
     window?.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
+    } else {
+        return []
+    }
 };
 
 const getWishListFromLocalStorage = (): WishItem[] => {
+    if (typeof window !== "undefined") {
     const wishData = window?.localStorage.getItem(dataKeys.wishList);
     return wishData ? JSON.parse(wishData) : [];
+    } else {
+        return []
+    }
 };
 
 const saveWishListToLocalStorage = (wishItems: WishItem[]) => {
+    if (typeof window !== "undefined") {
     window?.localStorage.setItem(dataKeys.wishList, JSON.stringify(wishItems));
+    } else {
+        return []
+    }
 };
 
 const findProductById = (cart: CartItem[], productId: number): CartItem | undefined => {
