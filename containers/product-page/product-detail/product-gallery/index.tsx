@@ -36,7 +36,7 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
                             <ChevronLeftIcon fontSize='large' style={{ color: "white", fontSize: "50px" }} />
                         </IconButton>
                         <Image
-                        className='sm:min-w-[250px] xl:min-w-[400px]'
+                        className='xl:min-w-[400px]'
                             src={images[currentImageIndex]}
                             alt={title}
                             width={0}
