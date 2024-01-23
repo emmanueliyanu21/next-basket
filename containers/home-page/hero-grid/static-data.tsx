@@ -6,5 +6,4 @@ import Image2 from '../../../public/images/media bg-cover.jpeg'
 const data = 
     {  itemCount: 5, category: 'FURNITURE', readMore: 'Read More' }
   
-
 export { Image1, Image2, Image3, Image4, data }

@@ -1,7 +1,7 @@
 "use client"
 
 import { usePathname } from 'next/navigation'
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -10,10 +10,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { data } from './static-data'
 import MobileNavbar from './MobileNavbar';
-import { openCartModal } from '../../redux/action/cart.action'
-import { openWishModal } from '../../redux/action/wish.action'
-import { useDispatch } from 'react-redux';
-import { getCartFromLocalStorage, getWishListFromLocalStorage } from '@/libs/util';
+import { handleCartModal, updateCart } from '@/redux/action/cart.action'
+import { openWishModal } from '@/redux/action/wish.action'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCartFromLocalStorage } from '@/libs/util';
+import { RootState } from '@/store/store';
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -21,17 +22,22 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
+    const {wishList, cart} = useSelector((state: RootState) => ({wishList: state.wishList, cart: state.cart})
+    );
 
     const getCount = (name:String) => {
         if(name === "cart"){
-            const cart = getCartFromLocalStorage() || []
-            return cart.length
+            return cart?.items.length
         }
         if (name === "wishlist"){
-            const cart = getWishListFromLocalStorage() || []
-            return cart.length
+            return wishList.items.length
         }
     }
+
+    useEffect(() => {
+        const cartData = getCartFromLocalStorage() 
+        dispatch(updateCart(cartData))
+    }, [])
 
     const handleClose = () => { }
 
@@ -39,7 +45,7 @@ const Navbar = () => {
     }
 
     const handleCart = () => {
-        dispatch(openCartModal());
+        dispatch(handleCartModal(true));
     }
 
     const handleMobile = () => {
@@ -63,7 +69,6 @@ const Navbar = () => {
             action();
         }
     };
-    // const count = '1'
     return (
         <Container maxWidth="xl" className={isProductPage ? 'xl:px-48' : ''}>
             <Box className="flex justify-between py-2 mt-2">
@@ -96,7 +101,7 @@ const Navbar = () => {
                     </MenuItem>
                    <Box display={"flex"} alignItems="center" gap={2}>
                    {data.icons.map(({icon, name, hasCount}, index) => {
-                        let count = hasCount && getCount(name)
+                        let count = hasCount && getCount(name);
                         return (name !== "wishlist" || !isMobile) && (
                             (name !== "hamburger" || isMobile) && (
                                 <Box  position={"relative"}

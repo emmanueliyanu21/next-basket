@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { Box, Typography, Button, IconButton } from '@mui/material';
-import { incrementQuantity, decrementQuantity, removeItem } from '../../../redux/action/cart.action';
-import { formatPrice } from '../../../libs/util';
+import { updateCart } from '../../../redux/action/cart.action';
+import { formatPrice, removePrdtFromCart, updatePrdtQuantityInCart } from '../../../libs/util';
 import { Delete } from '@mui/icons-material';
 import { CartItem } from '@/types/Cart';
 
@@ -14,15 +14,17 @@ const CartItem = ({ item }: intems) => {
   const dispatch = useDispatch();
 
   const handleIncrement = (productId: number) => {
-    dispatch(incrementQuantity(productId));
+    const updatedCart = updatePrdtQuantityInCart(productId, 1)
+    dispatch(updateCart(updatedCart))
   };
 
   const handleDecrement = (productId: number) => {
-    dispatch(decrementQuantity(productId));
+    const updatedCart = updatePrdtQuantityInCart(productId, -1)
+    dispatch(updateCart(updatedCart));
   };
 
   const deleteItem = (productId: number) => {
-    dispatch(removeItem(productId))
+    dispatch(updateCart(removePrdtFromCart(productId)));
   }
 
   return (
@@ -55,6 +57,7 @@ const CartItem = ({ item }: intems) => {
               variant="outlined"
               color="primary"
               onClick={() => handleIncrement(item.id)}
+              disabled={!!(item.stock && item.quantity >= item.stock)}
             >
               +
             </Button>

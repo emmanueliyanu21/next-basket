@@ -1,7 +1,6 @@
 import React from 'react';
 import { Breadcrumbs, Typography } from '@mui/material';
 import Link from 'next/link';
-import HomeIcon from '@mui/icons-material/Home';
 import { BreadCrumbProps } from '@/types/BreadCrumbProps';
 import { ChevronRight } from '@mui/icons-material';
 

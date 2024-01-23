@@ -1,4 +1,5 @@
 import { CartItem } from "@/types/Cart";
+import { SingleProduct } from "@/types/Product";
 import { WishItem } from "@/types/WishList";
 export const dataKeys = {
     cart: "next_cart",
@@ -11,8 +12,8 @@ const formatPrice = (price: number) => {
 
 const getCartFromLocalStorage = (): CartItem[] => {
     if (typeof window !== "undefined") {
-    const cartData = window?.localStorage.getItem(dataKeys.cart);
-    return cartData ? JSON.parse(cartData) : [];
+        const cartData = window?.localStorage.getItem(dataKeys.cart);
+        return cartData ? JSON.parse(cartData) : [];
     } else {
         return []
     }
@@ -20,7 +21,7 @@ const getCartFromLocalStorage = (): CartItem[] => {
 
 const saveCartToLocalStorage = (cartItems: CartItem[]) => {
     if (typeof window !== "undefined") {
-    window?.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
+        window?.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
     } else {
         return []
     }
@@ -28,8 +29,8 @@ const saveCartToLocalStorage = (cartItems: CartItem[]) => {
 
 const getWishListFromLocalStorage = (): WishItem[] => {
     if (typeof window !== "undefined") {
-    const wishData = window?.localStorage.getItem(dataKeys.wishList);
-    return wishData ? JSON.parse(wishData) : [];
+        const wishData = window?.localStorage.getItem(dataKeys.wishList);
+        return wishData ? JSON.parse(wishData) : [];
     } else {
         return []
     }
@@ -37,7 +38,7 @@ const getWishListFromLocalStorage = (): WishItem[] => {
 
 const saveWishListToLocalStorage = (wishItems: WishItem[]) => {
     if (typeof window !== "undefined") {
-    window?.localStorage.setItem(dataKeys.wishList, JSON.stringify(wishItems));
+        window?.localStorage.setItem(dataKeys.wishList, JSON.stringify(wishItems));
     } else {
         return []
     }
@@ -47,33 +48,34 @@ const findProductById = (cart: CartItem[], productId: number): CartItem | undefi
     return cart.find(product => product.id === productId);
 };
 
-const updatePrdtQuantityInCart = (productId: number, carts: CartItem[], count: -1 | 1): CartItem[] => {
-
+const updatePrdtQuantityInCart = (productId: number, count: -1 | 1): CartItem[] => {
     const itemsInCart = getCartFromLocalStorage()
-    const b = itemsInCart.length ? itemsInCart : carts
-    const updatedCart = b.map((item) =>
+    const updatedCart = itemsInCart.map((item) =>
         item.id === productId ? { ...item, quantity: item.quantity + count } : item
     )
     saveCartToLocalStorage(updatedCart)
     return updatedCart;
 }
 
-const addPrdtToCart = (product: CartItem, cart: CartItem[]) => {
-    const cartInLs = getCartFromLocalStorage()
-    const myCart = cartInLs.length ? cartInLs : cart
-    const existingProduct = myCart.find((item) => item.id === product.id)
-    if (!existingProduct) {
-        let updatedCart = [...myCart, { ...product, quantity: 1 }]
-        saveCartToLocalStorage(updatedCart)
-        return updatedCart
-    }
-    return cart;
-}
+const addPrdtToCart = (product: SingleProduct): CartItem[] => {
+    const { id, price, thumbnail, title, stock } = product
+    const storedCart = getCartFromLocalStorage();
+    const cart = { id, price, thumbnail, title, stock }
+    const existingProduct = storedCart.find((item) => item.id === product.id);
 
-const removePrdtFromCart = (productId: number, cart: CartItem[]) => {
+    if (!existingProduct) {
+        const updatedCart = [...storedCart, { ...cart, quantity: 1 }];
+        saveCartToLocalStorage(updatedCart);
+        return updatedCart;
+    }
+
+    return storedCart;
+};
+
+const removePrdtFromCart = (productId: number) => {
     const cartInLs = getCartFromLocalStorage()
-    const myCart = cartInLs.length ? cartInLs : cart
-    const updatedCart = myCart.filter((item) => item.id !== productId)
+    // const myCart = cartInLs.length ? cartInLs : cart
+    const updatedCart = cartInLs.filter((item) => item.id !== productId)
     saveCartToLocalStorage(updatedCart)
     return updatedCart
 }

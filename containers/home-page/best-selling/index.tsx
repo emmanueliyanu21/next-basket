@@ -30,7 +30,6 @@ const BestSelling: React.FC<HeaderProps & PageProps> = ({ page }) => {
     useEffect(() => {
         if (!initialized.current && !products.length) {
             initialized.current = true
-            // if (isProductPage && !products.length)
             fetch()
         }
     }, []);
@@ -48,7 +47,6 @@ const BestSelling: React.FC<HeaderProps & PageProps> = ({ page }) => {
 
     return (
         <Container>
-
             <HeaderContent content={bestSellingData.dataHeader} type={isProductPage ? "captionOnly" : "default"} />
             {
                 !products.length ?

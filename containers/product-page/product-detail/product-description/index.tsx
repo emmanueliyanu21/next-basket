@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Typography, Box, CircularProgress} from '@mui/material';
-import {  formatPrice } from '@/libs/util';
+import {  addPrdtToCart, formatPrice, updatePrdtQuantityInCart } from '@/libs/util';
 import StarRating from '@/components/Shared/Rating';
 import Button from '@/components/Shared/Button'
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
 import { SingleProduct } from '@/types/Product';
-import { addToCart, openCartModal } from '@/redux/action/cart.action';
+import { handleCartModal, updateCart } from '@/redux/action/cart.action';
 import Snackbar from '@/components/Snackbar';
 import { addToWish, openWishModal } from '@/redux/action/wish.action';
 
@@ -30,8 +30,8 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
     const handleAddToCart = () => {
         setSnackbarOpen(true);
         setSnackbarMessage(snacksData.cart);
-        dispatch(addToCart(data));
-        dispatch(openCartModal());
+        dispatch(updateCart(addPrdtToCart(data)));
+        dispatch(handleCartModal(true));
     };
 
     const handleAddToWish = () => {

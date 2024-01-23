@@ -1,10 +1,10 @@
 export interface CartItem {
     id: number;
-    name: string;
     price: number;
     quantity: number;
     thumbnail: string;
-    title?: string
+    title: string,
+    stock: number
   }
   
   export interface CartOpen {
@@ -12,6 +12,6 @@ export interface CartItem {
   }
 
   export interface CartState {
-    isCartModalOpen: boolean;
+    cartVisible: boolean;
     items: CartItem[];
   }
