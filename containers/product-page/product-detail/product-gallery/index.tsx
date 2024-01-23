@@ -28,8 +28,8 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
     const imageWidth = sm ? 250 : md ? 350 : 500;
 
     return (
-        <Box className="flex lg:block" justifyContent={"center"} flexDirection={"column"} alignItems={"center"}>
-            <Box className="relative max-w-lg w-100 p-4 mb-4 rounded-md bg-white" height={"500px"}>
+        <Box className="flex lg:block bg-lightWhite" justifyContent={"center"} flexDirection={"column"} alignItems={"center"}>
+            <Box className="relative max-w-lg w-100 p-4 mb-4 rounded-md" height={"500px"}>
                 {!loading && images && images[currentImageIndex] ?
                     <Box display="flex" height={"100%"} width={"100%"}>
                         <IconButton onClick={handlePrevImage} style={{ position: "absolute", top: "50%" }}>

@@ -8,7 +8,7 @@ import { SingleProduct } from '@/types/Product';
 const Description = ({ data }: { data: SingleProduct }) => {
   return (
     <Box
-      className="flex flex-wrap  lg:flex-nowrap md:gap-10">
+      className="flex flex-wrap  lg:flex-nowrap md:gap-10 lg:px-12">
       <Box display="block" className="py-4 lg:max-w-[500px] lg:min-w-[500px]" >
         {
           data.title ?

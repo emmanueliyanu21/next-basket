@@ -14,6 +14,7 @@ import { openCartModal } from '../../redux/action/cart.action'
 import { openWishModal } from '../../redux/action/wish.action'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { getCartFromLocalStorage } from '@/libs/util';
 
 const Navbar = () => {
     const pathname = usePathname()
@@ -21,16 +22,18 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const [isVisible, setIsVisible] = useState(false)
     const isMobile = useMediaQuery('(max-width:600px)');
-    const {cart, wishList} = useSelector((state:RootState) => ({cart: state.cart, wishList: state.wishList}));
+    const wishList = useSelector((state:RootState) => ( state.wishList));
 
     const getCount = (name:String) => {
         if(name === "cart"){
-            return cart?.items.length
+            const cart = getCartFromLocalStorage() || []
+            return cart.length
         }
         if (name === "wishlist"){
             return wishList?.items.length
         }
     }
+    
     const handleClose = () => { }
 
     const handleSearch = () => {
@@ -92,7 +95,8 @@ const Navbar = () => {
                             {data.loginRegisterMenuItem}
                         </Typography>
                     </MenuItem>
-                    {data.icons.map(({icon, name, hasCount}, index) => {
+                   <Box display={"flex"} alignItems="center" gap={2}>
+                   {data.icons.map(({icon, name, hasCount}, index) => {
                         let count = hasCount && getCount(name)
                         return (name !== "wishlist" || !isMobile) && (
                             (name !== "hamburger" || isMobile) && (
@@ -102,15 +106,16 @@ const Navbar = () => {
                                     className={isMobile ? "text-black cursor-pointer" : "text-secondary cursor-pointer"}
                                     onClick={() => handleIconClick(index)}
                                 >
-                                    <span>{icon}</span> &nbsp;
-                                    {count ? <span >{count}</span> : ""}
+                                    <p>{icon}</p> &nbsp;
+                                    <span>{count ? count : ""}</span>
                                 </Box>
                             )
                         )
                             })}
+                   </Box>
                 </Box>
             </Box>
-            {isVisible ? <MobileNavbar data={data} handleClose={handleMobile}/> : ''}
+            {isVisible && isMobile ? <MobileNavbar data={data} handleClose={handleMobile}/> : ''}
         </Container>
     )
 }

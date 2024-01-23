@@ -1,14 +1,10 @@
 import React from 'react'
 import ProductDescription from './product-description';
-import TabsPanel from '../tabs-panel';
 import ProductGallery from './product-gallery'
-import { Paper, Container, Grid, styled, Box } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { description } from '@/containers/static-data';
+import { Paper, Grid, styled, Box } from '@mui/material';
+import { SingleProduct } from '@/types/Product';
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(0),
     textAlign: 'left',
@@ -16,26 +12,28 @@ const Item = styled(Paper)(({ theme }) => ({
     boxShadow: 'none',
   }));
 
-const ProductDetail = () => {
-    const { singleProduct, loading } = useSelector((state: RootState) => state.product);
+type ProductDetailProps =  {
+    product: SingleProduct;
+    loading: boolean;
+}
 
+const ProductDetail = ({product, loading}: ProductDetailProps) => {
     return (
       <>
-          <Box className='mb-24 mt-5'>
+          <Box className='mb-24 mt-5' >
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>
-                        <ProductGallery images={singleProduct.images} title={singleProduct.title} loading={loading}/>
+                        <ProductGallery images={product.images} title={product.title} loading={loading}/>
                     </Item>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6}>
                     <Item>
-                        <ProductDescription data={singleProduct} loading={loading}/>
+                        <ProductDescription data={product} loading={loading}/>
                     </Item>
                 </Grid>
             </Grid>
         </Box>
-        <TabsPanel content={singleProduct}/>
       </>
     )
 }

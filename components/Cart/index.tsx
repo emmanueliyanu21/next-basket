@@ -6,16 +6,20 @@ import { RootState } from '../../store/store';
 import { closeCartModal } from '@/redux/action/cart.action';
 import { formatPrice } from '@/libs/util';
 import { Close } from '@mui/icons-material';
+import { getCartFromLocalStorage } from '@/libs/util';
 
 const CartModal = () => {
     const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart);
+    const {isCartModalOpen, items} = useSelector((state: RootState) => state.cart);
+    const cartItems = getCartFromLocalStorage();
     const handleClose = () => {
         dispatch(closeCartModal());
     }
 
     const getTotalPriceAndQuantity = () => {
-        const result = cartItems.items.reduce(
+        console.log(cartItems, "cartItems");
+        
+        const result = cartItems.reduce(
           (accumulator, item) => {
             accumulator.totalPrice += item.quantity * item.price;
             accumulator.totalQuantity += item.quantity;
@@ -31,17 +35,17 @@ const CartModal = () => {
 
     return (
         <Modal
-            open={cartItems.isCartModalOpen}
+            open={isCartModalOpen}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             onClose={handleClose}
             sx={{
                 maxWidth: "610px",
                 width: "95%",
-                margin: "auto"
+                margin: "auto",
             }}
         >
-            <Fade in={cartItems.isCartModalOpen}>
+            <Fade in={isCartModalOpen}>
                 <Box
                     className="bg-white p-4 rounded-md"
                     sx={{
@@ -60,9 +64,9 @@ const CartModal = () => {
                             <Close/>
                         </Button>
                    </Box>
-                    {totalQuantity ?
+                    {cartItems.length ?
                   <Box className="max-w-md mx-auto">
-                      {cartItems.items.map((item: any) => (
+                      {cartItems.map((item: CartItem) => (
                         <CartItem key={item.id} item={item} />
                     ))}
                     <Divider className='my-8'/>

@@ -58,7 +58,7 @@ const Footer: React.FC<{ data: Data }> = ({ data }) => (
         </Container>
         <Box className="py-8 bg-gray-100">
             <Container className="md:px-32">
-                <Typography className="text-grey text-sm font-montserrat font-medium leading-6 tracking-wide">{data.reserved}</Typography>
+                <Typography className="text-grey text-sm font-Montserrat font-medium leading-6 tracking-wide">{data.reserved}</Typography>
             </Container>
         </Box>
     </Box>

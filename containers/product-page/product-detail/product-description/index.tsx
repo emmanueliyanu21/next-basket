@@ -45,16 +45,15 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
     const colors = ['#23A6F0', '#2DC071', '#E77C40', '#252B42'];
 
     return (
-
-        <Box style={{maxWidth: "600px", margin: "auto", width: "100%"}} display="block" className="pt-2 pl-8">
+        <Box className="bg-lightWhite">
+        <Box style={{maxWidth: "600px", margin: "auto", width: "100%"}} display="block" className="pt-2 pl-8 ">
             {loading || !data.brand ? <Box height={"300px"} alignItems={"center"} className="mt-12" sx={{ display: 'flex', justifyContent: 'center'}}>
                 <CircularProgress />
             </Box>
             :
-            
         <>
             <Snackbar open={isVisible} close={() => setSnackbarOpen(false)} message={snackMessage} />
-            <Typography className="py-4 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
+            <Typography className="pt-4 pb-2 text-black font-Montserrat text-xl font-light leading-6 tracking-wider">
                 {data.brand}
             </Typography>
             <Box className="py-2" justifyContent="left" display="flex" alignItems="center" gap={2}>
@@ -73,7 +72,7 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
                 </Typography>
             </Box>
             <Box><Typography>{data.description}</Typography></Box>
-            <Box className="pb-14 pt-4 mt-32 border-t-2 border-gray-100">
+            <Box className="pb-14 pt-4 mt-32 border-t-2 border-gray-200">
                 <ColorPalette colors={colors} />
             </Box>
             <Box className="xs:flex flex-wrap" display="flex" gap={2} justifyContent="start" alignContent="center">
@@ -89,6 +88,7 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
             </Box>
             </>
             }
+        </Box>
         </Box>
     )
 }
