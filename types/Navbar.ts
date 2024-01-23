@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 import { ReactNode } from "react";
-interface menuIcon {
-    name: string;
+export type menuIcon  = {
+    name: "search" | "cart" | "wishlist" | "hamburger";
     icon: ReactNode;
     hasCount?: boolean
 }

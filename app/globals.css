@@ -21,5 +21,11 @@ body {
   background-repeat: no-repeat; 
 }
 
+@media (max-width: 282px) {
+  .main-text {
+    font-size: 24px;
+    margin: -8px 0px;
+  }
+}
 
 

@@ -21,7 +21,7 @@ const DynamicList: React.FC<ListData & GetInTouch> = ({ name, list, text, action
             <Box>
                 <Box className="mt-6" width={"100%"} height={"70px"}>
                     <TextField style={{ width: "60%", height: "60px", borderRadius: "2px" }} className='bg-lightWhite border-none' id="outlined-basic" label={text} variant="outlined" />
-                    <Button style={{ width: "40%", height: "56px", marginLeft: "-15px", borderRadius: "2px" }} size='large' className='py-4 border-none bg-secondary text-white shadow-none capitalize' variant="contained">{action}</Button>
+                    <Button style={{ width: "40%", height: "56px", marginLeft: "-15px", borderRadius: "0 2px 2px 0" }} size='large' className='py-4 border-none bg-secondary text-white shadow-none capitalize' variant="contained">{action}</Button>
                 </Box>
                 <Typography className='font-light text-xs pt-2 text-grey '>{caption}</Typography>
             </Box>

@@ -46,7 +46,7 @@ const WishListModal = () => {
                 <Box
                     className="bg-white p-4 rounded-md"
                     sx={{
-                        width: 600,
+                        width: "100%",
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
@@ -74,14 +74,6 @@ const WishListModal = () => {
                                 <Typography variant="h6" className='text-black'>
                                     {formatPrice(totalPrice)}
                                 </Typography>
-                            </Box>
-                            <Box my={2} textAlign={"right"}>
-                                {/* <Button onClick={handleClose} color="secondary" className="bg-black text-white">
-                            Close
-                        </Button> */}
-                                <Button variant="contained" className="bg-secondary text-white" color="secondary">
-                                    Add To Cart
-                                </Button>
                             </Box>
                         </Box>
                         :

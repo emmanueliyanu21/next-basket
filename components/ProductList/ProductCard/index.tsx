@@ -22,10 +22,12 @@ const ProductCard = ({ item }: ProductCardProps) => {
                         style={{
                             width: '100%', height: '100%',
                             minWidth: '183px',
-                            maxWidth: '183px',
+                            maxWidth: '400px',
                             minHeight: '238px',
-                            maxHeight: '250px',
+                            maxHeight: '450px',
                             objectFit: 'cover',
+                            overflow: "hidden",
+                            objectPosition: "top"
                         }}
                     />
                 </Box>

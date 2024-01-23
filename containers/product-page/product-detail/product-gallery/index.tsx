@@ -28,7 +28,7 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
     const imageWidth = sm ? 250 : md ? 350 : 500;
 
     return (
-        <Box className="flex lg:block bg-lightWhite" justifyContent={"center"} flexDirection={"column"} alignItems={"center"}>
+        <Box className="flex lg:block bg-lightWhite" justifyContent={"center"} flexDirection={"column"} alignItems={"center"} overflow={"hidden"} width={"100%"}>
             <Box className="relative max-w-lg w-100 p-4 mb-4 rounded-md" height={"500px"}>
                 {!loading && images && images[currentImageIndex] ?
                     <Box display="flex" height={"100%"} width={"100%"}>
@@ -36,13 +36,22 @@ const ProductGallery: React.FC<ProductDetailProps> = ({ images, title, loading }
                             <ChevronLeftIcon fontSize='large' style={{ color: "white", fontSize: "50px" }} />
                         </IconButton>
                         <Image
+                        className='sm:min-w-[250px] xl:min-w-[400px]'
                             src={images[currentImageIndex]}
                             alt={title}
-                            width={imageWidth} height={imageWidth}
+                            width={0}
+                            height={0}
+                            sizes='100vw'
                             style={{
-                                width: '100%', height: '100%',
-                                objectFit: 'cover', objectPosition: "top"
-                            }}
+                                maxWidth: "800px",
+                                width: "100%",
+                                maxHeight: "500px",
+                                minHeight: "400px",
+                                height: "100%",
+                                objectFit: "cover",
+                                overflow: "hidden",
+                                objectPosition: "top"
+                                }}
                             priority={true}
                         />
                         <IconButton onClick={handleNextImage} style={{ position: "absolute", top: "50%", right: "10px" }}>

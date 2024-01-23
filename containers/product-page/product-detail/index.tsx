@@ -20,7 +20,7 @@ type ProductDetailProps =  {
 const ProductDetail = ({product, loading}: ProductDetailProps) => {
     return (
       <>
-          <Box className='mb-24 mt-5' >
+          <Box className='mb-24 mt-5'>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6} className='text-left'>
                     <Item>

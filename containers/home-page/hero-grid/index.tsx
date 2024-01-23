@@ -13,7 +13,12 @@ const ItemContent: React.FC<ItemContentProps> = ({ itemCount, category, readMore
     </Typography>
     <Typography
       variant={variant}
-      className={`py-${variant === 'h3' ? 4 : 2} font-montserrat font-bolder capitalize leading-8 text-black tracking-wide`}
+      className={`py-${variant === 'h3' ? 4 : 2} 
+      sm:text-${variant === 'h3' ? '2xl' : ''} 
+                sm:text-${variant === 'h3' ? '2xl' : ''}  
+                xs:text-${variant === 'h3' ? 'base' : 'base'} 
+      font-montserrat font-bolder capitalize 
+      leading-8 text-black tracking-wide main-text`}
     >
       {category}
     </Typography>
@@ -42,7 +47,7 @@ const HeroGrid = () => {
               <Image src={Image1}  width={0} height={0} alt="Bandage"
                   sizes="100vw"
                   style={{
-                    minWidth: '331px',
+                    minWidth: '200px',
                     width: '100%',
                     maxWidth: '1024px',
                     minHeight: '300px',
@@ -59,7 +64,7 @@ const HeroGrid = () => {
             <Image src={Image2} width={0} height={0} alt="Bandage"
                   sizes="100vw"
                   style={{
-                    minWidth: '331px',
+                    minWidth: '200px',
                     width: '100%',
                     maxWidth: '1024px',
                     minHeight: '300px',

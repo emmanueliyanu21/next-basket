@@ -1,8 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
 import Bandage from '../../public/images/Bandage.png'
 import { ShoppingCartOutlined, FavoriteBorderOutlined } from '@mui/icons-material';
+import { NavbarProps } from '@/types/Navbar';
 
-const data = {
+const data:NavbarProps["data"] = {
     menuItems: [
         {url: '/', name: 'Home'},
         {url: 'shop', name: 'Shop'},

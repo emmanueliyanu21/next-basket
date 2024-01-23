@@ -48,9 +48,15 @@ const TabsPanel = ({ content }: ProductTabsPanelProp) => {
 
   return (
     <Container>
-      <Box className="pb-20s">
+      <Box className="pb-20s" overflow={"hidden"} width={"100%"}>
         <Box className="mb-12" display="flex" justifyContent="center" sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs
+            className="overflow-x-auto font-Montserrat" 
+            value={value} onChange={handleChange} 
+            aria-label="basic tabs example"
+            variant="scrollable"
+            scrollButtons = {true}
+            allowScrollButtonsMobile = {true}
             sx={{
               '& .MuiTabs-flexContainer': {
                 paddingBottom: "15px"
@@ -66,7 +72,7 @@ const TabsPanel = ({ content }: ProductTabsPanelProp) => {
                 fontWeight: "400"
               }
             }}
-          className="overflow-x-auto font-montserrat" value={value} onChange={handleChange} aria-label="basic tabs example">
+          >
             {tabsData.map((tab, index) => (
               <Tab className='sm:w-500 xs:w-300 overflow-hidden' key={index} label={tab.label} {...a11yProps(index)} />
             ))}
