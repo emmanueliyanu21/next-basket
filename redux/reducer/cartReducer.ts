@@ -1,4 +1,4 @@
-import {  HANDLE_CART_MODAL, UPDATE_CART } from '../types/cart.types'
+import {  HANDLE_CART_WISH_MODAL, UPDATE_CART } from '../types/cart.types'
 import { CartState } from '@/types/Cart';
 
 type CartActionTypes = {
@@ -7,7 +7,10 @@ type CartActionTypes = {
 }
 
 const initialState: CartState = {
-  cartVisible: false,
+  isVisible: {
+    status: false,
+    key: ''
+  },
   items: [],
 };
 
@@ -20,10 +23,10 @@ const cartReducer = (state = initialState, action: CartActionTypes): CartState =
         items: action.payload
       }
 
-    case HANDLE_CART_MODAL:
+    case HANDLE_CART_WISH_MODAL:
       return {
         ...state,
-        cartVisible: action.payload,
+        isVisible: action.payload,
       };
 
     default:

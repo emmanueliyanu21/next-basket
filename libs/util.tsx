@@ -1,103 +1,71 @@
-import { CartItem } from "@/types/Cart";
 import { SingleProduct } from "@/types/Product";
-import { WishItem } from "@/types/WishList";
+
+interface CommonItem {
+    id: number;
+    price: number;
+    thumbnail: string;
+    title: string;
+    quantity?: number;
+    stock?: number
+  }
+
 export const dataKeys = {
-    cart: "next_cart",
-    wishList: "next_wishhlist"
+    cart: "cart",
+    wishList: "wishhList"
 }
 
 const formatPrice = (price: number) => {
     return price?.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 };
 
-const getCartFromLocalStorage = (): CartItem[] => {
+const getLocalStorageItems = <T extends CommonItem>(key: string): T[] => {
     if (typeof window !== "undefined") {
-        const cartData = window?.localStorage.getItem(dataKeys.cart);
-        return cartData ? JSON.parse(cartData) : [];
+      const data = window?.localStorage.getItem(key);
+      return data ? JSON.parse(data) : [];
     } else {
-        return []
+      return [];
     }
-};
-
-const saveCartToLocalStorage = (cartItems: CartItem[]) => {
+  };
+  
+  const saveLocalStorageItems = <T extends CommonItem>(key: string, items: T[]) => {
     if (typeof window !== "undefined") {
-        window?.localStorage.setItem(dataKeys.cart, JSON.stringify(cartItems));
-    } else {
-        return []
+      window?.localStorage.setItem(key, JSON.stringify(items));
     }
-};
-
-const getWishListFromLocalStorage = (): WishItem[] => {
-    if (typeof window !== "undefined") {
-        const wishData = window?.localStorage.getItem(dataKeys.wishList);
-        return wishData ? JSON.parse(wishData) : [];
-    } else {
-        return []
+  };
+  
+  const findItemById = <T extends CommonItem>(items: T[], itemId: number): T | undefined => {
+    return items.find(item => item.id === itemId);
+  };
+  
+  const updateQuantityInItems = <T extends CommonItem>(type: string, itemId: number, count: -1 | 1): T[] => {
+    const items: T[] = getLocalStorageItems(type)
+    const updatedItems = items.map(item =>
+      item.id === itemId ? { ...item, quantity: (item.quantity || 0) + count } : item
+    );
+    saveLocalStorageItems(type === dataKeys.cart ? dataKeys.cart : dataKeys.wishList, updatedItems);
+    return updatedItems;
+  };
+  
+  const addItemToItems = <T extends CommonItem>(type: string, item: SingleProduct): T[] => {
+    const items: T[] = getLocalStorageItems(type)
+    const { id, price, thumbnail, title, stock } = item;
+    const existingItem = findItemById(items, id);
+  
+    if (!existingItem) {
+      const newItem = { id, price, thumbnail, title, quantity: 1, ...(stock && { stock }) } as T;
+      const updatedItems = [...items, newItem];
+      saveLocalStorageItems(type === dataKeys.cart ? dataKeys.cart : dataKeys.wishList, updatedItems);
+      return updatedItems;
     }
-};
-
-const saveWishListToLocalStorage = (wishItems: WishItem[]) => {
-    if (typeof window !== "undefined") {
-        window?.localStorage.setItem(dataKeys.wishList, JSON.stringify(wishItems));
-    } else {
-        return []
-    }
-};
-
-const findProductById = (cart: CartItem[], productId: number): CartItem | undefined => {
-    return cart.find(product => product.id === productId);
-};
-
-const updatePrdtQuantityInCart = (productId: number, count: -1 | 1): CartItem[] => {
-    const itemsInCart = getCartFromLocalStorage()
-    const updatedCart = itemsInCart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + count } : item
-    )
-    saveCartToLocalStorage(updatedCart)
-    return updatedCart;
-}
-
-const addPrdtToCart = (product: SingleProduct): CartItem[] => {
-    const { id, price, thumbnail, title, stock } = product
-    const storedCart = getCartFromLocalStorage();
-    const cart = { id, price, thumbnail, title, stock }
-    const existingProduct = storedCart.find((item) => item.id === product.id);
-
-    if (!existingProduct) {
-        const updatedCart = [...storedCart, { ...cart, quantity: 1 }];
-        saveCartToLocalStorage(updatedCart);
-        return updatedCart;
-    }
-
-    return storedCart;
-};
-
-const removePrdtFromCart = (productId: number) => {
-    const cartInLs = getCartFromLocalStorage()
-    // const myCart = cartInLs.length ? cartInLs : cart
-    const updatedCart = cartInLs.filter((item) => item.id !== productId)
-    saveCartToLocalStorage(updatedCart)
-    return updatedCart
-}
-
-const removePrdtFromWish = (productId: number, wish: WishItem[]) => {
-    const cartInLs = getWishListFromLocalStorage()
-    const myWish = cartInLs.length ? cartInLs : wish
-    const updatedWish = myWish.filter((item) => item.id !== productId)
-    saveWishListToLocalStorage(updatedWish)
-    return updatedWish
-}
-
-const addPrdtToWishList = (product: WishItem, wish: WishItem[]) => {
-    const cartInLs = getWishListFromLocalStorage()
-    const myWish = cartInLs.length ? cartInLs : wish
-    const existingProduct = myWish.find((item) => item.id === product.id)
-    if (!existingProduct) {
-        let updatedWish = [...myWish, { ...product, quantity: 1 }]
-        saveWishListToLocalStorage(updatedWish)
-        return updatedWish
-    }
-    return wish;
-}
-
-export { formatPrice, getCartFromLocalStorage, saveCartToLocalStorage, findProductById, updatePrdtQuantityInCart, addPrdtToCart, removePrdtFromCart, removePrdtFromWish, addPrdtToWishList, getWishListFromLocalStorage }
+  
+    return items;
+  };
+  
+  const removeItemFromItems = <T extends CommonItem>(type: string, itemId: number): T[] => {
+    const items: T[] = getLocalStorageItems(type)
+    const updatedItems = items.filter(item => item.id !== itemId);
+    saveLocalStorageItems(type === dataKeys.cart ? dataKeys.cart : dataKeys.wishList, updatedItems);
+    return updatedItems;
+  };
+  
+export { formatPrice, removeItemFromItems, addItemToItems, updateQuantityInItems, getLocalStorageItems,  }

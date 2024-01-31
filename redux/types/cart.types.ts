@@ -1,4 +1,4 @@
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
-export const HANDLE_CART_MODAL = 'HANDLE_CART_MODAL'
+export const HANDLE_CART_WISH_MODAL = 'HANDLE_CART_WISH_MODAL'
 export const UPDATE_CART = 'UPDATE_CART'

@@ -19,6 +19,8 @@ body {
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 
+  width: auto;
+  height: auto;
 }
 
 @media (max-width: 282px) {

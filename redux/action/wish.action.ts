@@ -1,10 +1,11 @@
 import { SingleProduct } from "@/types/Product";
-import { ADD_TO_WISH, REMOVE_ITEM, OPEN_WISH_MODAL, CLOSE_WISH_MODAL, } from '../types/wishList.types'
+import { UPDATE_WISHLIST, REMOVE_ITEM } from '../types/wishList.types'
+import { WishItem } from "@/types/WishList";
 
-export const addToWish = (product: SingleProduct) => {
+export const updateWishList = (cart: WishItem[]) => {
   return {
-    type: ADD_TO_WISH,
-    payload: product,
+    type: UPDATE_WISHLIST,
+    payload: cart,
   };
 };
 
@@ -13,10 +14,3 @@ export const removeItem = (productId: number) => ({
   payload: productId,
 });
 
-export const openWishModal = () => ({
-  type: OPEN_WISH_MODAL,
-});
-
-export const closeWishModal = () => ({
-  type: CLOSE_WISH_MODAL,
-});

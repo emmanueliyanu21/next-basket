@@ -6,7 +6,7 @@ import { NavbarProps } from '@/types/Navbar';
 const data:NavbarProps["data"] = {
     menuItems: [
         {url: '/', name: 'Home'},
-        {url: 'shop', name: 'Shop'},
+        {url: '', name: 'Shop'},
         {url: 'about', name: 'About'},
         {url: 'blog', name: 'Blog'},
         {url: 'contact', name: 'Contact'},

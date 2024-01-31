@@ -7,4 +7,5 @@ const montserrat = Montserrat({
   fallback: ['sans-serif'],
   variable: '--font-montserrat'
 });
+
 export default montserrat;

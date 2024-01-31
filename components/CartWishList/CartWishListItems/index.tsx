@@ -2,29 +2,30 @@ import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import { updateCart } from '../../../redux/action/cart.action';
-import { formatPrice, removePrdtFromCart, updatePrdtQuantityInCart } from '../../../libs/util';
+// import { removeItem as removeFromCart } from '../../../redux/action/cart.action';
+import { formatPrice, removeItemFromItems, updateQuantityInItems, } from '../../../libs/util';
 import { Delete } from '@mui/icons-material';
 import { CartItem } from '@/types/Cart';
+import { WishItem } from '@/types/WishList';
 
-type intems = {
-  item: CartItem
+type CartWishProps = {
+  item: CartItem | WishItem,
+  isCart: boolean
 }
 
-const CartItem = ({ item }: intems) => {
+const CartWishListItem = ({ item, isCart }: CartWishProps) => {
   const dispatch = useDispatch();
 
   const handleIncrement = (productId: number) => {
-    const updatedCart = updatePrdtQuantityInCart(productId, 1)
-    dispatch(updateCart(updatedCart))
+    dispatch(updateCart(updateQuantityInItems('cart', productId, 1)))
   };
 
   const handleDecrement = (productId: number) => {
-    const updatedCart = updatePrdtQuantityInCart(productId, -1)
-    dispatch(updateCart(updatedCart));
+    dispatch(updateCart(updateQuantityInItems('cart', productId, -1)));
   };
 
   const deleteItem = (productId: number) => {
-    dispatch(updateCart(removePrdtFromCart(productId)));
+    dispatch(updateCart(removeItemFromItems('cart', productId)));
   }
 
   return (
@@ -42,6 +43,7 @@ const CartItem = ({ item }: intems) => {
             </Box>
           </Box>
          <Box display={"flex"}>
+          {isCart && (
          <Box className="flex items-center space-x-2">
             <Button
             sx={{width: "10px"}}
@@ -62,6 +64,7 @@ const CartItem = ({ item }: intems) => {
               +
             </Button>
           </Box>
+          )}
           <IconButton onClick={() => deleteItem(item.id)}>
             <Delete style={{color: "#8B0000"}}/>
           </IconButton>
@@ -72,4 +75,4 @@ const CartItem = ({ item }: intems) => {
   );
 };
 
-export default CartItem;
+export default CartWishListItem;
