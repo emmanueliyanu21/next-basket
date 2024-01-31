@@ -1,5 +1,5 @@
 
-import { HANDLE_CART_WISH_MODAL, UPDATE_CART, REMOVE_ITEM } from '../types/cart.types'
+import { HANDLE_CART_MODAL, UPDATE_CART, REMOVE_ITEM } from '../types/cart.types'
 import { CartItem } from "@/types/Cart";
 
 export const removeItem = (productId: number) => ({
@@ -12,8 +12,8 @@ export const updateCart = (cart: CartItem[]) => ({
   payload: cart
 })
 
-export const handleCartWishModal = (isVisible: {}) => ({
-  type: HANDLE_CART_WISH_MODAL,
+export const handleCartModal = (isVisible: boolean) => ({
+  type: HANDLE_CART_MODAL,
   payload: isVisible
 });
 

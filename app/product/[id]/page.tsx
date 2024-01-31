@@ -1,6 +1,5 @@
 "use client"
 
-import Head from 'next/head';
 import { fetchSingleProduct } from '@/services/product/apiService';
 import Box from '@mui/material/Box';
 import { useEffect } from 'react';
@@ -24,23 +23,9 @@ const ProductDetailPage = () => {
 
   return (
     <>
-    <Head>
-        <title>Your Product Title - Ecommerce Site</title>
-        <meta name="description" content="Description of your product." />
-      </Head>
     <ProductPage />
     </>
   );
 };
-
-// export async function getServerSideProps(context) {
-//   const { id } = context.query;
-//   const product = await fetchSingleProduct(id);
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// }
 
 export default ProductDetailPage;

@@ -1,4 +1,4 @@
-export const UPDATE_WISHLIST = 'UPDATE_WISHLIST'
+export const ADD_TO_WISH = 'ADD_TO_WISH'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const OPEN_WISH_MODAL = 'OPEN_WISH_MODAL'
 export const CLOSE_WISH_MODAL = 'CLOSE_WISH_MODAL'

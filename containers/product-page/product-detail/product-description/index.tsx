@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Typography, Box, CircularProgress} from '@mui/material';
-import {  addItemToItems, formatPrice } from '@/libs/util';
+import {  addPrdtToCart, formatPrice, updatePrdtQuantityInCart } from '@/libs/util';
 import StarRating from '@/components/Shared/Rating';
 import Button from '@/components/Shared/Button'
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,9 +9,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ColorPalette from './color-pallete';
 import { SingleProduct } from '@/types/Product';
-import { handleCartWishModal, updateCart } from '@/redux/action/cart.action';
+import { handleCartModal, updateCart } from '@/redux/action/cart.action';
 import Snackbar from '@/components/Snackbar';
-import { updateWishList } from '@/redux/action/wish.action';
+import { addToWish, openWishModal } from '@/redux/action/wish.action';
 
 type ProductDetailProps = {
     data: SingleProduct;
@@ -30,15 +30,15 @@ const ProductDescription: React.FC<ProductDetailProps> = ({ data, loading }) => 
     const handleAddToCart = () => {
         setSnackbarOpen(true);
         setSnackbarMessage(snacksData.cart);
-        dispatch(updateCart(addItemToItems('cart', data )));
-        dispatch(handleCartWishModal({ status: true, key: 'cart'}));
+        dispatch(updateCart(addPrdtToCart(data)));
+        dispatch(handleCartModal(true));
     };
 
     const handleAddToWish = () => {
         setSnackbarOpen(true);
         setSnackbarMessage(snacksData.wishlist);
-        dispatch(updateCart(addItemToItems('wishList', data)));
-        dispatch(handleCartWishModal({ status: true, key: 'wish'}));
+        dispatch(addToWish(data));
+        dispatch(openWishModal());
     }
 
     // this is static because the api has no color pallete

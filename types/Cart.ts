@@ -4,19 +4,14 @@ export interface CartItem {
     quantity: number;
     thumbnail: string;
     title: string,
-    stock?: number
+    stock: number
   }
   
   export interface CartOpen {
     isOpen: boolean
   }
 
-  type IsVisibleType = {
-    status: boolean,
-    key: string
-  }
-
   export interface CartState {
-    isVisible: IsVisibleType;
+    cartVisible: boolean;
     items: CartItem[];
   }

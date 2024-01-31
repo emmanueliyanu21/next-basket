@@ -10,40 +10,23 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import { data } from "./static-data";
 import MobileNavbar from "./MobileNavbar";
-import { handleCartWishModal, updateCart } from "@/redux/action/cart.action";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { handleCartModal, updateCart } from "@/redux/action/cart.action";
+import { openWishModal } from "@/redux/action/wish.action";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartFromLocalStorage } from "@/libs/util";
 import { RootState } from "@/store/store";
 import { menuIcon } from "@/types/Navbar";
-import { getLocalStorageItems } from "@/libs/util";
-import Dropdown from "./Dropdown";
-import SearchModal from "../Search";
-
-export type CommonItem = {
-  id: number;
-  price: number;
-  thumbnail: string;
-  title: string;
-  quantity: number; // Optional for compatibility
-  stock?: number;
-};
 
 const Navbar = () => {
   const pathname = usePathname();
   const isProductPage = pathname.split("/")[1];
   const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const anchorRef = React.useRef<HTMLButtonElement>(null);
   const isMobile = useMediaQuery("(max-width:600px)");
-  const { wishList, cart } = useSelector(
-    (state: RootState) => ({
-      wishList: state.wishList,
-      cart: state.cart,
-    }),
-    shallowEqual
-  );
-  const loginData = useSelector((state: RootState) => state.auth.login);
+  const { wishList, cart } = useSelector((state: RootState) => ({
+    wishList: state.wishList,
+    cart: state.cart,
+  }));
 
   const getCount = (name: String) => {
     if (name === "cart") {
@@ -55,26 +38,17 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const cartData: CommonItem[] = getLocalStorageItems("cart");
+    const cartData = getCartFromLocalStorage();
     dispatch(updateCart(cartData));
   }, []);
 
   const handleClose = () => {};
 
-  const handleLogin = () => {
-  }
-
-  const handleSearch = () => {
-    setIsOpen(true);
-  };
-
-  const handleToggle = () => {
-    setOpen((open) => !open);
-  };
+  const handleSearch = () => {};
 
   const handleCart = () => {
     setIsVisible(false);
-    dispatch(handleCartWishModal({ status: "true", key: "cart" }));
+    dispatch(handleCartModal(true));
   };
 
   const handleMobile = () => {
@@ -82,7 +56,7 @@ const Navbar = () => {
   };
   const handleWishList = () => {
     setIsVisible(false);
-    dispatch(handleCartWishModal({ status: "true", key: "wish" }));
+    dispatch(openWishModal());
   };
 
   const handleIconClick = (name: menuIcon["name"]) => {
@@ -111,44 +85,31 @@ const Navbar = () => {
               style={{ width: "120px", height: "auto" }}
             />
           </Link>
-          <Box className="relative hidden md:flex items-center gap-2">
+          <Box className="hidden md:flex items-center gap-2">
             {data.menuItems.map((item, index) => (
               <MenuItem key={index} onClick={handleClose} className="px-1">
-                <Typography
-                  className="relative text-grey font-montserrat font-bold leading-6 tracking-wide"
-                  variant="body2"
-                >
-                  <Link href={`/${item.url}`}>{item.name}</Link>
-                  <span
-                    ref={anchorRef}
-                    id="composition-button"
-                    aria-controls={open ? "composition-menu" : undefined}
-                    aria-expanded={open ? "true" : undefined}
-                    aria-haspopup="true"
-                    onClick={handleToggle}
+                <Link href={`/${item.url}`}>
+                  <Typography
+                    className="text-grey font-montserrat font-bold leading-6 tracking-wide"
+                    variant="body2"
                   >
+                    {item.name}
                     {item.name === "Shop" ? <ExpandMoreIcon /> : ""}
-                  </span>
-                </Typography>
+                  </Typography>
+                </Link>
               </MenuItem>
             ))}
-            <Box className="absolute">
-              <Dropdown isOpen={open} />
-            </Box>
           </Box>
         </Box>
         <Box className="flex gap-4 items-center p-2">
           <MenuItem className="hidden lg:flex secondary" onClick={handleClose}>
             <PersonOutlineIcon fontSize="small" className="text-secondary" />
-            <Link href={"/auth/login"} >
             <Typography
-              onClick={handleLogin}
               className="font-bold tracking-wider text-secondary"
               variant="body2"
             >
               {data.loginRegisterMenuItem}
             </Typography>
-            </Link>
           </MenuItem>
           <Box display={"flex"} alignItems="center" gap={2}>
             {data.icons.map(({ icon, name, hasCount }, index) => {
@@ -176,12 +137,6 @@ const Navbar = () => {
           </Box>
         </Box>
       </Box>
-      {isOpen && isOpen ? (
-        <SearchModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      ) : (
-        ""
-      )}
-
       {isVisible && isMobile ? (
         <MobileNavbar
           data={data}

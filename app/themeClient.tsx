@@ -3,9 +3,11 @@
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import store from '../store/store';
+
 import { ThemeProvider } from "@emotion/react";
 import { theme } from '@/libs/theme'
-import CartWishList from '@/components/CartWishList';
+import CartModal from '@/components/Cart';
+import WishList from '@/components/WishList';
 
 export default function ThemeClient({
     children,
@@ -15,7 +17,8 @@ export default function ThemeClient({
     return (
         <Provider store={store}>
             <ToastContainer />
-            <CartWishList />
+            <CartModal />
+            <WishList />
             <ThemeProvider theme={theme}>
                 {children}
             </ThemeProvider>
